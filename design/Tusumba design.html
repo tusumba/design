@@ -1,0 +1,560 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tusumba — Design System v1.4 · Спринт 1 · Заявки, профиль, модерация</title><style>/* Tusumba DS v1.0 — Material 3 semantic tokens. Draft palette, confirm with team. */
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --tusumba-primary: #4757BE;
+  --tusumba-on-primary: #FFFFFF;
+  --tusumba-primary-container: #DEE2FF;
+  --tusumba-on-primary-container: #172465;
+  --tusumba-secondary: #565D70;
+  --tusumba-on-secondary: #FFFFFF;
+  --tusumba-secondary-container: #DAE2F9;
+  --tusumba-on-secondary-container: #131D2D;
+  --tusumba-tertiary: #006B60;
+  --tusumba-on-tertiary: #FFFFFF;
+  --tusumba-tertiary-container: #9CF2E2;
+  --tusumba-on-tertiary-container: #00201B;
+  --tusumba-error: #B3261E;
+  --tusumba-on-error: #FFFFFF;
+  --tusumba-error-container: #F9DEDC;
+  --tusumba-on-error-container: #410E0B;
+  --tusumba-background: #FAF9FF;
+  --tusumba-on-background: #191B22;
+  --tusumba-surface: #FFFBFF;
+  --tusumba-on-surface: #191B22;
+  --tusumba-surface-variant: #E3E2ED;
+  --tusumba-on-surface-variant: #45464F;
+  --tusumba-outline: #767680;
+  --tusumba-outline-variant: #C6C6D0;
+  --tusumba-inverse-surface: #2E3038;
+  --tusumba-inverse-on-surface: #F0EFF7;
+  --tusumba-inverse-primary: #B9C4FF;
+  --tusumba-surface-container-lowest: #FFFFFF;
+  --tusumba-surface-container-low: #F4F3FA;
+  --tusumba-surface-container: #EFEDF5;
+  --tusumba-surface-container-high: #E9E8F0;
+  --tusumba-surface-container-highest: #E3E2EB;
+  --tusumba-surface-tint: #4757BE;
+  --tusumba-scrim: #000000;
+  --tusumba-shadow: #000000;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --tusumba-primary: #B9C4FF;
+  --tusumba-on-primary: #1A2773;
+  --tusumba-primary-container: #2D3C9D;
+  --tusumba-on-primary-container: #DEE2FF;
+  --tusumba-secondary: #BEC6DD;
+  --tusumba-on-secondary: #283145;
+  --tusumba-secondary-container: #3E465C;
+  --tusumba-on-secondary-container: #DAE2F9;
+  --tusumba-tertiary: #80D6C7;
+  --tusumba-on-tertiary: #003730;
+  --tusumba-tertiary-container: #005047;
+  --tusumba-on-tertiary-container: #9CF2E2;
+  --tusumba-error: #F2B8B5;
+  --tusumba-on-error: #601410;
+  --tusumba-error-container: #8C1D18;
+  --tusumba-on-error-container: #F9DEDC;
+  --tusumba-background: #11131A;
+  --tusumba-on-background: #E3E2EA;
+  --tusumba-surface: #11131A;
+  --tusumba-on-surface: #E3E2EA;
+  --tusumba-surface-variant: #45464F;
+  --tusumba-on-surface-variant: #C6C6D0;
+  --tusumba-outline: #90909A;
+  --tusumba-outline-variant: #45464F;
+  --tusumba-inverse-surface: #E3E2EA;
+  --tusumba-inverse-on-surface: #2E3038;
+  --tusumba-inverse-primary: #4757BE;
+  --tusumba-surface-container-lowest: #0D0E15;
+  --tusumba-surface-container-low: #191A22;
+  --tusumba-surface-container: #1D1E26;
+  --tusumba-surface-container-high: #272831;
+  --tusumba-surface-container-highest: #32333C;
+  --tusumba-surface-tint: #B9C4FF;
+  --tusumba-scrim: #000000;
+  --tusumba-shadow: #000000;
+}
+:root {
+  --tusumba-font: "Roboto", system-ui, sans-serif;
+  --tusumba-space-0: 0px;
+  --tusumba-space-1: 4px;
+  --tusumba-space-2: 8px;
+  --tusumba-space-3: 12px;
+  --tusumba-space-4: 16px;
+  --tusumba-space-5: 20px;
+  --tusumba-space-6: 24px;
+  --tusumba-space-8: 32px;
+  --tusumba-space-10: 40px;
+  --tusumba-space-12: 48px;
+  --tusumba-space-16: 64px;
+  --tusumba-radius-none: 0px;
+  --tusumba-radius-xs: 4px;
+  --tusumba-radius-sm: 8px;
+  --tusumba-radius-md: 12px;
+  --tusumba-radius-lg: 16px;
+  --tusumba-radius-xl: 24px;
+  --tusumba-radius-xxl: 28px;
+  --tusumba-radius-full: 999px;
+}
+.tusumba-display-large {font-family:var(--tusumba-font);font-size:57px;line-height:64px;letter-spacing:-0.25px;font-weight:400;}
+.tusumba-display-medium {font-family:var(--tusumba-font);font-size:45px;line-height:52px;letter-spacing:0px;font-weight:400;}
+.tusumba-display-small {font-family:var(--tusumba-font);font-size:36px;line-height:44px;letter-spacing:0px;font-weight:400;}
+.tusumba-headline-large {font-family:var(--tusumba-font);font-size:32px;line-height:40px;letter-spacing:0px;font-weight:400;}
+.tusumba-headline-medium {font-family:var(--tusumba-font);font-size:28px;line-height:36px;letter-spacing:0px;font-weight:400;}
+.tusumba-headline-small {font-family:var(--tusumba-font);font-size:24px;line-height:32px;letter-spacing:0px;font-weight:400;}
+.tusumba-title-large {font-family:var(--tusumba-font);font-size:22px;line-height:28px;letter-spacing:0px;font-weight:400;}
+.tusumba-title-medium {font-family:var(--tusumba-font);font-size:16px;line-height:24px;letter-spacing:0.15px;font-weight:500;}
+.tusumba-title-small {font-family:var(--tusumba-font);font-size:14px;line-height:20px;letter-spacing:0.1px;font-weight:500;}
+.tusumba-body-large {font-family:var(--tusumba-font);font-size:16px;line-height:24px;letter-spacing:0.5px;font-weight:400;}
+.tusumba-body-medium {font-family:var(--tusumba-font);font-size:14px;line-height:20px;letter-spacing:0.25px;font-weight:400;}
+.tusumba-body-small {font-family:var(--tusumba-font);font-size:12px;line-height:16px;letter-spacing:0.4px;font-weight:400;}
+.tusumba-label-large {font-family:var(--tusumba-font);font-size:14px;line-height:20px;letter-spacing:0.1px;font-weight:500;}
+.tusumba-label-medium {font-family:var(--tusumba-font);font-size:12px;line-height:16px;letter-spacing:0.5px;font-weight:500;}
+.tusumba-label-small {font-family:var(--tusumba-font);font-size:11px;line-height:16px;letter-spacing:0.5px;font-weight:500;}
+\n/* Task #18899: reviewable, low-fidelity wireframes for Sprint 1 */
+#wf-section{scroll-margin-top:90px}
+.wf-shell{border:1px solid var(--tusumba-outline-variant);border-radius:24px;overflow:hidden;background:var(--tusumba-surface-container-low);margin-top:22px}
+.wf-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:17px 20px;border-bottom:1px solid var(--tusumba-outline-variant);background:var(--tusumba-surface)}
+.wf-controls label{font-size:12px;color:var(--tusumba-on-surface-variant);display:flex;flex-direction:column;gap:6px;font-weight:600}
+.wf-controls select{color:var(--tusumba-on-surface);background:var(--tusumba-surface);border:1px solid var(--tusumba-outline-variant);border-radius:11px;min-width:175px;padding:10px 32px 10px 12px;font:inherit;font-size:13px}
+.wf-controls .wf-radio{display:flex;gap:3px;background:var(--tusumba-surface-container);border-radius:12px;padding:4px;align-self:end}
+.wf-controls .wf-radio button{border:0;background:transparent;color:var(--tusumba-on-surface-variant);padding:9px 13px;border-radius:9px;cursor:pointer;font:inherit;font-size:12px}
+.wf-controls .wf-radio button[aria-pressed=true]{background:var(--tusumba-primary);color:var(--tusumba-on-primary)}
+.wf-stage{padding:34px 16px 42px;display:flex;justify-content:center;overflow:auto;background:repeating-linear-gradient(0deg,var(--tusumba-surface-container-low),var(--tusumba-surface-container-low) 23px,var(--tusumba-outline-variant) 24px,var(--tusumba-surface-container-low) 25px);}
+.wf-viewport{width:100%;max-width:1100px;min-height:610px;background:var(--tusumba-surface);color:var(--tusumba-on-surface);box-shadow:0 15px 55px #17183b18;border:1px solid var(--tusumba-outline-variant);border-radius:17px;overflow:hidden;transition:width .2s ease}
+.wf-viewport.is-mobile{width:390px;max-width:390px;min-width:390px;min-height:744px;box-shadow:0 10px 35px #17183b18}
+.wf-viewport button{font:inherit;cursor:pointer}
+.wf-viewport .wf-header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 26px;border-bottom:1px solid var(--tusumba-outline-variant)}
+.wf-viewport .wf-logo{font-weight:850;font-size:24px;letter-spacing:-1px;color:var(--tusumba-primary)}
+.wf-viewport .wf-links{display:flex;align-items:center;gap:23px}
+.wf-viewport .wf-links button{border:0;background:transparent;color:var(--tusumba-on-surface-variant);font-size:13px;font-weight:650;padding:8px 3px}
+.wf-viewport .wf-links button.wf-active{color:var(--tusumba-primary)}
+.wf-viewport .wf-login{border:1px solid var(--tusumba-outline-variant);padding:10px 18px;border-radius:12px;background:var(--tusumba-surface);color:var(--tusumba-on-surface)}
+.wf-viewport .wf-main{padding:34px 38px 56px;min-height:520px}
+.wf-viewport h2{font-size:30px;margin:0 0 8px;line-height:1.23;letter-spacing:-.7px}
+.wf-viewport h3{font-size:16px;margin:0 0 8px;line-height:1.25}
+.wf-viewport p{margin:0;color:var(--tusumba-on-surface-variant);line-height:1.55}
+.wf-viewport .wf-muted{font-size:13px;color:var(--tusumba-on-surface-variant)}
+.wf-viewport .wf-kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--tusumba-primary);margin:0 0 12px}
+.wf-viewport .wf-intro{max-width:680px;font-size:14px;margin-bottom:24px}
+.wf-viewport .wf-searchbar{display:flex;align-items:center;border:1px solid var(--tusumba-outline-variant);border-radius:14px;padding:0 14px;gap:9px;height:50px;max-width:700px;background:var(--tusumba-surface)}
+.wf-viewport .wf-searchbar input{border:0;background:transparent;outline:0;flex:1;min-width:0;color:var(--tusumba-on-surface);font:inherit;font-size:14px}
+.wf-viewport .wf-filterline{display:flex;gap:7px;flex-wrap:wrap;margin:17px 0 23px}
+.wf-viewport .wf-chip{border:1px solid var(--tusumba-outline-variant);border-radius:100px;padding:9px 15px;font-size:12px;background:transparent;color:var(--tusumba-on-surface-variant)}
+.wf-viewport .wf-chip.wf-on{background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container);border-color:transparent}
+.wf-viewport .wf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.wf-viewport .wf-card{border:1px solid var(--tusumba-outline-variant);border-radius:18px;overflow:hidden;background:var(--tusumba-surface)}
+.wf-viewport .wf-picture{height:132px;background:linear-gradient(125deg,var(--tusumba-surface-container),var(--tusumba-surface-container-high));display:flex;align-items:center;justify-content:center;position:relative;color:var(--tusumba-outline);font-size:32px}
+.wf-viewport .wf-picture:after{content:'';border:1px solid var(--tusumba-outline-variant);height:85%;position:absolute;transform:rotate(22deg)}
+.wf-viewport .wf-date-tag{position:absolute;left:12px;top:12px;border-radius:8px;padding:6px 8px;background:var(--tusumba-surface);color:var(--tusumba-on-surface);font-size:11px;font-weight:700}
+.wf-viewport .wf-cardbody{padding:16px 15px 17px}
+.wf-viewport .wf-cardbody .wf-category{color:var(--tusumba-primary);font-weight:750;font-size:10px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
+.wf-viewport .wf-cardbody h3{min-height:40px}
+.wf-viewport .wf-cardbody p{font-size:12px;line-height:1.7;margin-bottom:13px}
+.wf-viewport .wf-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wf-viewport .wf-row strong{font-size:13px}
+.wf-viewport .wf-primary{background:var(--tusumba-primary);color:var(--tusumba-on-primary);border:1px solid var(--tusumba-primary);border-radius:11px;padding:11px 16px;font-size:13px;font-weight:700}
+.wf-viewport .wf-secondary{background:var(--tusumba-surface);border:1px solid var(--tusumba-outline-variant);color:var(--tusumba-on-surface);border-radius:11px;padding:11px 16px;font-size:13px;font-weight:700}
+.wf-viewport .wf-back{border:0;background:transparent;color:var(--tusumba-primary);padding:0 0 21px;font-weight:700;font-size:13px}
+.wf-viewport .wf-detail-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.85fr);gap:28px}
+.wf-viewport .wf-hero-placeholder{height:265px;border-radius:18px;background:var(--tusumba-surface-container);position:relative;overflow:hidden;margin-bottom:18px}
+.wf-viewport .wf-hero-placeholder:before,.wf-viewport .wf-hero-placeholder:after{content:'';position:absolute;top:50%;left:50%;width:125%;height:1px;background:var(--tusumba-outline-variant);transform:translate(-50%,-50%) rotate(19deg)}
+.wf-viewport .wf-hero-placeholder:after{transform:translate(-50%,-50%) rotate(-19deg)}
+.wf-viewport .wf-paragraph{font-size:13px;margin:12px 0 20px!important;max-width:630px}
+.wf-viewport .wf-section-title{margin-top:25px!important;margin-bottom:10px!important}
+.wf-viewport .wf-info{border:1px solid var(--tusumba-outline-variant);border-radius:16px;padding:20px;background:var(--tusumba-surface);height:max-content}
+.wf-viewport .wf-info .wf-meta{padding:12px 0;border-bottom:1px solid var(--tusumba-outline-variant);font-size:13px;display:flex;gap:11px}
+.wf-viewport .wf-info .wf-meta span{color:var(--tusumba-on-surface-variant)}
+.wf-viewport .wf-info .wf-primary{width:100%;margin-top:17px}
+.wf-viewport .wf-info .wf-secondary{width:100%;margin-top:9px}
+.wf-viewport .wf-list-simple{border-top:1px solid var(--tusumba-outline-variant);margin:12px 0;padding:14px 0;display:flex;gap:12px;font-size:13px;color:var(--tusumba-on-surface-variant)}
+.wf-viewport .wf-tag{background:var(--tusumba-surface-container-low);border-radius:8px;padding:6px 10px;display:inline-block;font-size:11px;margin-right:5px}
+.wf-viewport .wf-notice{border:1px solid var(--tusumba-outline-variant);background:var(--tusumba-surface-container-low);border-radius:16px;padding:18px;color:var(--tusumba-on-surface-variant);font-size:13px}
+.wf-viewport .wf-feedback{display:grid;place-items:center;text-align:center;min-height:375px;padding:40px 20px}
+.wf-viewport .wf-feedback-inner{max-width:410px}
+.wf-viewport .wf-feedback-icon{display:grid;place-items:center;width:70px;height:70px;border-radius:22px;background:var(--tusumba-surface-container);color:var(--tusumba-on-surface-variant);font-size:31px;margin:0 auto 18px}
+.wf-viewport .wf-feedback p{font-size:13px;margin:0 auto 20px}
+.wf-viewport .wf-skeleton{background:linear-gradient(90deg,var(--tusumba-surface-container),var(--tusumba-surface-container-high),var(--tusumba-surface-container));background-size:200% 100%;animation:wfShimmer 1.6s infinite;border-radius:10px}
+@keyframes wfShimmer{to{background-position:-200% 0}}
+.wf-viewport .wf-loading-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.wf-viewport .wf-loading-card{border:1px solid var(--tusumba-outline-variant);border-radius:16px;padding:12px;display:grid;gap:12px}
+.wf-viewport .wf-authwrap{display:grid;grid-template-columns:42% 58%;min-height:620px}
+.wf-viewport .wf-authpromo{background:var(--tusumba-primary);color:var(--tusumba-on-primary);padding:58px 34px;display:flex;flex-direction:column;gap:20px;justify-content:center}
+.wf-viewport .wf-authpromo h2{color:var(--tusumba-on-primary);font-size:34px}
+.wf-viewport .wf-authpromo p{color:var(--tusumba-on-primary);opacity:.85;font-size:14px}
+.wf-viewport .wf-authform{padding:54px 66px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.wf-viewport .wf-authform h2{margin-bottom:8px}
+.wf-viewport .wf-fieldlabel{display:block;font-size:13px;font-weight:700;margin:12px 0 7px}
+.wf-viewport .wf-field{border:1px solid var(--tusumba-outline-variant);background:var(--tusumba-surface);border-radius:12px;padding:13px 15px;width:100%;font:inherit;font-size:14px;color:var(--tusumba-on-surface)}
+.wf-viewport .wf-authform .wf-primary{width:100%;margin-top:11px}
+.wf-viewport .wf-formbottom{text-align:center;font-size:13px;margin-top:12px}
+.wf-viewport .wf-formbottom button{border:0;background:transparent;color:var(--tusumba-primary);font-weight:700}
+.wf-viewport .wf-checkbox{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:var(--tusumba-on-surface-variant);margin-top:10px}
+.wf-viewport .wf-checkbox input{accent-color:var(--tusumba-primary)}
+.wf-viewport .wf-auth-error{font-size:12px;color:var(--tusumba-error);margin-top:5px}
+.wf-viewport .wf-mobile-nav{display:none}
+.wf-preview-notes{margin:20px 3px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wf-preview-notes>div{background:var(--tusumba-surface-container-low);border:1px solid var(--tusumba-outline-variant);border-radius:13px;padding:15px;font-size:12px;color:var(--tusumba-on-surface-variant)}
+.wf-preview-notes strong{display:block;color:var(--tusumba-on-surface);margin-bottom:7px;font-size:13px}
+.wf-viewport.is-mobile .wf-header{padding:15px 18px}.wf-viewport.is-mobile .wf-logo{font-size:22px}.wf-viewport.is-mobile .wf-links{display:none}
+.wf-viewport.is-mobile .wf-login{padding:8px 10px;font-size:12px}
+.wf-viewport.is-mobile .wf-main{padding:24px 18px 92px}.wf-viewport.is-mobile h2{font-size:25px}
+.wf-viewport.is-mobile .wf-grid{grid-template-columns:1fr;gap:12px}.wf-viewport.is-mobile .wf-picture{height:145px}
+.wf-viewport.is-mobile .wf-detail-grid{grid-template-columns:1fr;gap:12px}.wf-viewport.is-mobile .wf-hero-placeholder{height:173px}
+.wf-viewport.is-mobile .wf-filterline{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.wf-viewport.is-mobile .wf-chip{white-space:nowrap}
+.wf-viewport.is-mobile .wf-mobile-nav{position:sticky;bottom:0;display:flex;justify-content:space-around;background:var(--tusumba-surface);border-top:1px solid var(--tusumba-outline-variant);padding:12px 3px;gap:2px}
+.wf-viewport.is-mobile .wf-mobile-nav button{border:0;background:transparent;color:var(--tusumba-on-surface-variant);font-size:11px;font-weight:600;min-width:74px}.wf-viewport.is-mobile .wf-mobile-nav button.active{color:var(--tusumba-primary)}
+.wf-viewport.is-mobile .wf-authwrap{grid-template-columns:1fr;min-height:0}.wf-viewport.is-mobile .wf-authpromo{display:none}.wf-viewport.is-mobile .wf-authform{padding:38px 22px 55px}.wf-viewport.is-mobile .wf-authform h2{font-size:29px}
+.wf-viewport.is-mobile .wf-loading-grid{grid-template-columns:1fr}
+@media(max-width:700px){.wf-controls{gap:10px}.wf-controls label{flex:1}.wf-controls select{min-width:0;width:100%}.wf-preview-notes{grid-template-columns:1fr}}
+
+</style><style>
+*{box-sizing:border-box}body{margin:0;font-family:Roboto,Arial,sans-serif;background:var(--tusumba-background);color:var(--tusumba-on-background);transition:background .2s}button,input{font:inherit}button{cursor:pointer}header{position:sticky;top:0;z-index:5;background:var(--tusumba-surface);border-bottom:1px solid var(--tusumba-outline-variant)}.wrap{max-width:1250px;margin:auto;padding:0 32px}.top{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:25px;color:var(--tusumba-primary);letter-spacing:-1px}.nav{display:flex;gap:26px;color:var(--tusumba-on-surface-variant);font-size:14px}.toggle{border:1px solid var(--tusumba-outline);background:var(--tusumba-surface);color:var(--tusumba-on-surface);padding:10px 16px;border-radius:100px}.hero{margin:42px auto 34px;border-radius:32px;background:var(--tusumba-primary);color:var(--tusumba-on-primary);padding:64px 70px;min-height:285px;position:relative;overflow:hidden}.hero h1{font-size:52px;margin:0 0 16px;position:relative;z-index:1}.hero p{font-size:19px;opacity:.93;position:relative;z-index:1}.orbit{position:absolute;right:-75px;top:-115px;width:410px;height:410px;border-radius:50%;background:var(--tusumba-primary-container);opacity:.82}.orb2{position:absolute;right:185px;top:90px;width:130px;height:130px;border-radius:40%;background:var(--tusumba-tertiary-container);transform:rotate(27deg)}section{margin:42px 0 58px}h2{font-size:26px;letter-spacing:-.4px;margin:0 0 8px}.desc{color:var(--tusumba-on-surface-variant);margin:0 0 24px;font-size:14px}.panel{background:var(--tusumba-surface);border:1px solid var(--tusumba-outline-variant);border-radius:22px;padding:24px}.colors{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.swatch{background:var(--tusumba-surface-container-low);border-radius:14px;overflow:hidden;border:1px solid var(--tusumba-outline-variant)}.swatchcolor{height:76px}.swatchname{padding:12px;font-size:12px;line-height:1.6}.swatchname code{color:var(--tusumba-on-surface-variant)}.typos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.type{padding:18px 22px;border:1px solid var(--tusumba-outline-variant);border-radius:14px;background:var(--tusumba-surface);min-height:100px}.type small{display:block;color:var(--tusumba-on-surface-variant);margin-bottom:12px}.buttons{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.btn{padding:14px 24px;font-weight:500;border-radius:100px;border:1px solid transparent;background:var(--tusumba-primary);color:var(--tusumba-on-primary);min-height:48px}.btn.tonal{background:var(--tusumba-secondary-container);color:var(--tusumba-on-secondary-container)}.btn.outlined{background:transparent;color:var(--tusumba-primary);border-color:var(--tusumba-outline)}.btn.text{background:transparent;color:var(--tusumba-primary)}.btn:disabled{background:var(--tusumba-surface-container-high);color:var(--tusumba-outline);cursor:not-allowed}.chip{background:var(--tusumba-surface);color:var(--tusumba-on-surface);border:1px solid var(--tusumba-outline);padding:9px 16px;border-radius:10px;min-height:40px}.chip.selected{background:var(--tusumba-secondary-container);color:var(--tusumba-on-secondary-container);border-color:transparent}.field{width:300px;display:inline-flex;flex-direction:column;gap:5px;margin-right:30px;font-size:13px;color:var(--tusumba-on-surface-variant)}.field input{padding:14px 16px;color:var(--tusumba-on-surface);background:var(--tusumba-surface);border:1px solid var(--tusumba-outline);border-radius:10px;outline:none}.field input:focus{border:2px solid var(--tusumba-primary)}.field.err,.field.err small{color:var(--tusumba-error)}.field.err input{border:2px solid var(--tusumba-error)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.event{border:1px solid var(--tusumba-outline-variant);border-radius:18px;background:var(--tusumba-surface);overflow:hidden}.poster{height:195px;position:relative;background:var(--tusumba-primary-container);overflow:hidden}.poster:before{content:"";position:absolute;right:-30px;top:-65px;width:240px;height:240px;border-radius:50%;background:var(--tusumba-tertiary-container)}.poster:after{content:"";position:absolute;left:-45px;bottom:-85px;width:210px;height:210px;border-radius:50%;background:var(--tusumba-primary)}.poster strong{position:absolute;top:24px;left:24px;z-index:1;color:var(--tusumba-on-primary-container);font-size:13px;letter-spacing:2px}.poster em{position:absolute;right:20px;bottom:22px;z-index:1;font-style:normal;font-size:48px;color:var(--tusumba-on-primary-container)}.details{padding:20px}.details h3{font-size:19px;margin:0 0 12px}.metadata{color:var(--tusumba-on-surface-variant);font-size:13px;line-height:2}.buy{width:100%;margin-top:18px}.states{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.state{padding:25px 22px 28px;min-height:270px;border:1px solid var(--tusumba-outline-variant);border-radius:17px;background:var(--tusumba-surface);text-align:center}.state .graphic{margin:8px auto 26px;border-radius:50%;width:80px;height:80px;display:grid;place-items:center;background:var(--tusumba-secondary-container);color:var(--tusumba-primary);font-size:36px}.state h3{margin:0 0 10px}.state p{color:var(--tusumba-on-surface-variant);font-size:14px}.skeleton{height:17px;border-radius:6px;background:var(--tusumba-surface-container-high);margin:17px 0}.footer{text-align:center;color:var(--tusumba-on-surface-variant);font-size:12px;padding:36px}.mini{display:flex;gap:9px;align-items:center;margin-top:20px}.mobile{width:370px;border-radius:25px;background:var(--tusumba-surface);border:1px solid var(--tusumba-outline-variant);padding:20px;box-shadow:0 12px 35px rgba(0,0,0,.06)}.mobile .event .poster{height:160px}.mobile .event .details{padding:15px}.mobile h3{font-size:18px}.mobnav{display:flex;justify-content:space-around;border-top:1px solid var(--tusumba-outline-variant);margin-top:16px;padding:14px 0 0;font-size:11px;color:var(--tusumba-on-surface-variant)}.mobnav b{color:var(--tusumba-primary)}
+@media(max-width:850px){.colors{grid-template-columns:repeat(3,1fr)}.cards,.states{grid-template-columns:1fr 1fr}.typos{grid-template-columns:1fr}.nav{display:none}}@media(max-width:550px){.wrap{padding:0 16px}.hero{padding:36px 25px;min-height:225px}.hero h1{font-size:37px}.colors{grid-template-columns:repeat(2,1fr)}.cards,.states{grid-template-columns:1fr}.mobile{max-width:100%}}
+
+/* AUTH SCREENS v1.2 — interactive local prototype, no API */
+html{scroll-behavior:smooth}
+.top a{color:inherit;text-decoration:none}.top a:hover{color:var(--tusumba-primary)}
+.preview-toolbar{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;margin:24px 0 18px}
+.preview-toolbar .small-note{font-size:13px;color:var(--tusumba-on-surface-variant)}
+.preview-options{display:flex;gap:12px;flex-wrap:wrap}
+.auth-segment{display:flex;align-items:center;border:1px solid var(--tusumba-outline-variant);background:var(--tusumba-surface-container);padding:4px;border-radius:100px;gap:3px}
+.auth-segment button{background:transparent;border:0;padding:11px 17px;color:var(--tusumba-on-surface-variant);border-radius:100px;font-size:13px;font-weight:600;transition:background .16s}
+.auth-segment button[aria-pressed="true"]{background:var(--tusumba-primary);color:var(--tusumba-on-primary);box-shadow:0 2px 10px rgba(0,0,0,.09)}
+.auth-stage{padding:34px;background:var(--tusumba-surface-container-low);border-radius:28px;border:1px solid var(--tusumba-outline-variant);display:flex;justify-content:center;align-items:flex-start;overflow:hidden}
+.auth-canvas{--auth-blue:#4757be;--auth-mint:#9af0dd;--auth-bg:var(--tusumba-background);--auth-ink:var(--tusumba-on-surface);--auth-sub:var(--tusumba-on-surface-variant);--auth-border:var(--tusumba-outline-variant);width:100%;max-width:1120px;min-height:710px;border-radius:21px;overflow:hidden;background:var(--auth-bg);box-shadow:0 18px 55px rgba(25,30,70,.12);display:grid;grid-template-columns:42% 58%;color:var(--auth-ink);font-family:Inter,Roboto,Arial,sans-serif;transition:width .2s;}
+.auth-canvas.is-mobile{width:412px;max-width:100%;min-height:760px;display:block;border-radius:28px}
+.auth-promo{background:var(--auth-blue);color:#fff;position:relative;overflow:hidden;padding:40px 44px;display:flex;flex-direction:column;min-height:710px}
+.auth-promo:before{content:"";width:310px;height:310px;position:absolute;top:-112px;right:-150px;border-radius:50%;background:rgba(225,230,255,.24)}
+.auth-promo:after{content:"";width:165px;height:165px;position:absolute;top:-25px;right:-64px;border-radius:50%;background:var(--auth-mint)}
+.auth-canvas.is-mobile .auth-promo{display:none}
+.auth-brand{display:flex;gap:10px;align-items:center;position:relative;z-index:1;font-size:22px;font-weight:800;letter-spacing:-.5px}
+.auth-logo-icon{width:35px;height:35px;border-radius:12px;background:#fff;display:inline-flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.auth-logo-icon:before{content:"";height:16px;width:16px;border-radius:100%;background:var(--auth-mint)}
+.auth-logo-icon:after{content:"";height:7px;width:7px;border-radius:100%;background:var(--auth-blue);position:absolute;right:5px;bottom:5px}
+.auth-promo .auth-eyebrow{align-self:flex-start;margin-top:105px;font-weight:700;font-size:11px;letter-spacing:.6px;text-transform:uppercase;padding:9px 14px;border-radius:40px;background:rgba(255,255,255,.17);position:relative;z-index:1}
+.auth-promo h3{position:relative;z-index:1;font-size:clamp(27px,3vw,40px);line-height:1.16;letter-spacing:-.9px;margin:32px 0 22px;color:#fff}
+.auth-promo p{position:relative;z-index:1;font-size:15px;line-height:1.65;margin:0;max-width:370px;color:rgba(255,255,255,.88)}
+.auth-feature{background:#fff;border-radius:20px;margin-top:auto;color:#20243a;padding:20px;display:flex;align-items:flex-start;gap:16px;position:relative;z-index:1}
+.auth-feature-icon{width:52px;height:52px;flex-shrink:0;border-radius:14px;background:#e1e6ff;display:grid;place-items:center;font-size:27px;color:#4757be}
+.auth-feature strong{font-size:14px;display:block;line-height:1.4;margin:2px 0 5px}.auth-feature small{font-size:12px;color:#68718b;line-height:1.55}
+.auth-promo .auth-foot{font-size:10px;opacity:.8;margin-top:30px;letter-spacing:.6px}
+.auth-work{position:relative;padding:35px min(5.4vw,70px) 32px;display:flex;flex-direction:column;align-items:center}
+.auth-topline{display:flex;justify-content:space-between;align-items:center;gap:18px;width:100%;color:var(--auth-sub);font-size:12px}
+.auth-topline .auth-mini-logo{display:none;color:var(--tusumba-primary);font-weight:800;font-size:21px;align-items:center;gap:9px}
+.auth-topline .auth-mini-logo .auth-logo-icon{background:var(--auth-blue)}
+.auth-topline .auth-mini-logo .auth-logo-icon:after{background:#fff}
+.auth-topline .auth-togglelink{border:0;background:none;padding:0;color:var(--tusumba-primary);font-size:12px;font-weight:700;cursor:pointer}
+.auth-topline .auth-go-back{border:0;background:none;color:var(--auth-sub);font-size:12px;padding:0;cursor:pointer}
+.auth-main{width:min(100%,374px);margin:auto 0; padding:24px 0 20px}
+.auth-main .auth-overline{color:#16887d;font-size:11px;font-weight:800;letter-spacing:.8px;margin:0 0 13px}
+.auth-main h3{font-size:36px;line-height:1.15;letter-spacing:-.8px;margin:0 0 14px;font-weight:750;color:var(--auth-ink)}
+.auth-intro{color:var(--auth-sub);font-size:14px;line-height:1.6;margin:0 0 30px}
+.auth-fields{display:flex;flex-direction:column;gap:17px}
+.auth-form-field{display:block;font-size:13px;font-weight:650;color:var(--auth-ink)}
+.auth-fieldwrap{height:52px;border:1px solid var(--auth-border);border-radius:12px;background:var(--tusumba-surface);display:flex;align-items:center;margin-top:8px;overflow:hidden;transition:border-color .12s,box-shadow .12s}
+.auth-fieldwrap:focus-within{border-color:var(--tusumba-primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--tusumba-primary) 13%,transparent)}
+.auth-fieldwrap.invalid{border-color:var(--tusumba-error)}
+.auth-fieldwrap input{font-size:14px;background:transparent;color:var(--auth-ink);width:100%;height:100%;border:0;padding:0 14px;outline:0;min-width:0}
+.auth-fieldwrap input::placeholder{color:var(--auth-sub);opacity:.75}
+.auth-password-toggle{height:100%;flex-shrink:0;border:0;background:transparent;color:var(--tusumba-primary);padding:0 13px;font-size:11px;font-weight:700}
+.auth-hint{font-size:11px;color:var(--tusumba-error);font-weight:500;display:block;margin:5px 0 0;min-height:0}
+.auth-meta{display:flex;justify-content:flex-end;margin:10px 0 24px}
+.auth-link{border:0;background:none;padding:0;color:var(--tusumba-primary);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none}
+.auth-submit{display:block;border:0;border-radius:13px;background:var(--auth-blue);color:white;width:100%;min-height:52px;font-weight:700;font-size:15px;transition:transform .15s,background .15s}
+.auth-submit:hover{background:#3546a9}.auth-submit:active{transform:translateY(1px)}
+.auth-below{display:flex;gap:9px;justify-content:center;align-items:center;margin-top:24px;font-size:13px;color:var(--auth-sub)}
+.auth-checkline{margin:3px 0 20px;display:flex;gap:10px;align-items:flex-start;color:var(--auth-sub);font-size:12px;line-height:1.5}
+.auth-checkline input{width:18px;height:18px;accent-color:var(--auth-blue);flex-shrink:0;margin:0}
+.auth-footnote{font-size:11px;color:var(--auth-sub);width:100%;text-align:center;margin-top:auto;padding-top:22px}
+.auth-message{margin-top:17px;font-size:13px;line-height:1.5;border-radius:12px;padding:12px 14px;background:var(--tusumba-tertiary-container);color:var(--tusumba-on-tertiary-container);display:none}
+.auth-message.is-error{background:var(--tusumba-error-container);color:var(--tusumba-on-error-container)}
+.auth-message.is-visible{display:block}
+.auth-canvas.is-mobile .auth-work{padding:30px 22px 28px;min-height:760px}
+.auth-canvas.is-mobile .auth-topline .auth-mini-logo{display:flex}
+.auth-canvas.is-mobile .auth-topline .auth-minor{display:none}
+.auth-canvas.is-mobile .auth-main{margin:52px 0 auto}
+.auth-canvas.is-mobile .auth-main h3{font-size:31px}
+.auth-canvas.is-mobile .auth-intro{margin-bottom:30px}
+.auth-canvas.is-mobile .auth-footnote{margin-top:22px}
+.auth-canvas.is-mobile .auth-form-field{font-size:13px}
+.auth-canvas.is-mobile .auth-fields{gap:13px}
+.auth-canvas.is-mobile:has([data-mode="register"].active) .auth-main{margin:34px 0 auto}
+.auth-canvas.is-mobile .auth-below{margin-top:20px}
+.auth-canvas .auth-mode{display:none}.auth-canvas .auth-mode.active{display:block}
+.auth-canvas.is-mobile .auth-promo-ghost{display:none}
+.auth-stage:has(.auth-canvas.is-mobile){background:radial-gradient(circle at 80% 5%,var(--tusumba-primary-container),transparent 50%),var(--tusumba-surface-container-low)}
+.auth-draft{border:1px dashed var(--tusumba-outline-variant);background:var(--tusumba-surface);border-radius:14px;color:var(--tusumba-on-surface-variant);padding:14px 18px;font-size:13px;line-height:1.6;margin-top:14px}
+.auth-screens-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.auth-note-card{border:1px solid var(--tusumba-outline-variant);background:var(--tusumba-surface);padding:20px;border-radius:17px}.auth-note-card h3{margin:0 0 10px;font-size:16px}.auth-note-card p{color:var(--tusumba-on-surface-variant);line-height:1.6;font-size:13px;margin:0}
+@media(max-width:1050px){.auth-canvas:not(.is-mobile){grid-template-columns:40% 60%}.auth-work{padding:30px 35px}.auth-promo{padding:35px 27px}.auth-promo .auth-eyebrow{margin-top:105px}}
+@media(max-width:750px){.auth-canvas:not(.is-mobile){grid-template-columns:1fr}.auth-canvas:not(.is-mobile) .auth-promo{display:none}.auth-canvas:not(.is-mobile) .auth-work{min-height:740px}.auth-canvas:not(.is-mobile) .auth-mini-logo{display:flex}.auth-stage{padding:16px}.auth-screens-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.preview-toolbar{gap:15px}.auth-segment button{padding:10px 14px}.auth-stage{padding:8px;border-radius:19px}.auth-canvas.is-mobile .auth-work{padding:27px 18px 22px}.auth-canvas.is-mobile .auth-main h3{font-size:28px}.auth-canvas.is-mobile{border-radius:22px}}
+</style><style>
+/* Sprint 1 / Task #19063: editable preview UI */
+body>header{position:relative!important}
+#s1-19063{scroll-margin-top:88px}
+.s1-shell{margin-top:22px;border:1px solid var(--tusumba-outline-variant);border-radius:24px;overflow:hidden;background:var(--tusumba-surface-container-low)}
+.s1-toolbar{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px;padding:16px 20px;background:var(--tusumba-surface);border-bottom:1px solid var(--tusumba-outline-variant)}
+.s1-toolbar label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:650;color:var(--tusumba-on-surface-variant)}
+.s1-toolbar select{font:inherit;font-size:13px;border:1px solid var(--tusumba-outline-variant);border-radius:10px;padding:11px 13px;color:var(--tusumba-on-surface);background:var(--tusumba-surface);max-width:100%}
+.s1-switch{display:flex;padding:4px;gap:3px;border-radius:12px;background:var(--tusumba-surface-container)}
+.s1-switch button{border:0;border-radius:9px;background:transparent;color:var(--tusumba-on-surface-variant);padding:10px 13px;font-size:12px;cursor:pointer}
+.s1-switch button[aria-pressed=true]{background:var(--tusumba-primary);color:var(--tusumba-on-primary)}
+.s1-stage{padding:32px 20px 46px;display:flex;justify-content:center;overflow:auto;background-image:radial-gradient(var(--tusumba-outline-variant) .6px,transparent .6px);background-size:16px 16px}
+.s1-app{background:var(--tusumba-background);color:var(--tusumba-on-background);font-family:var(--tusumba-font);border:1px solid var(--tusumba-outline-variant);box-shadow:0 18px 45px #151b4d14;border-radius:20px;flex:0 0 1060px;min-height:690px;overflow:hidden;transition:width .15s}
+.s1-app.mobile{flex-basis:390px;width:390px;min-height:760px}
+.s1-top{background:var(--tusumba-surface);height:70px;border-bottom:1px solid var(--tusumba-outline-variant);display:flex;align-items:center;justify-content:space-between;padding:0 29px;gap:12px}
+.s1-logo{display:flex;align-items:center;gap:10px;color:var(--tusumba-primary);font-size:20px;letter-spacing:-.5px;font-weight:800}
+.s1-logo-mark{width:30px;height:30px;border-radius:10px;background:var(--tusumba-primary);position:relative;display:inline-block}
+.s1-logo-mark:after{content:'';position:absolute;width:13px;height:13px;left:8px;top:8px;border-radius:50%;background:var(--tusumba-tertiary-container)}
+.s1-toplinks{display:flex;gap:19px;align-items:center;color:var(--tusumba-on-surface-variant);font-size:12px}.s1-toplinks strong{color:var(--tusumba-primary)}
+.s1-user{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container);font-size:11px;font-weight:800}
+.s1-page{padding:30px 32px 42px}
+.s1-eyebrow{text-transform:uppercase;letter-spacing:1.15px;color:var(--tusumba-tertiary);font-size:11px;font-weight:800;margin:0 0 10px}
+.s1-title{font-size:29px;line-height:1.17;letter-spacing:-.65px;font-weight:750;margin:0 0 7px;color:var(--tusumba-on-background)}
+.s1-subtitle{color:var(--tusumba-on-surface-variant);font-size:13px;line-height:1.6;margin:0}
+.s1-headrow{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:26px}
+.s1-btn{font:inherit;font-size:12px;font-weight:700;border:0;border-radius:11px;padding:12px 17px;background:var(--tusumba-primary);color:var(--tusumba-on-primary);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px}
+.s1-btn:focus-visible,.s1-tab:focus-visible,.s1-action:focus-visible{outline:3px solid var(--tusumba-tertiary);outline-offset:3px}
+.s1-btn:disabled{opacity:.5;cursor:not-allowed}.s1-btn.secondary{background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container)}.s1-btn.outline{background:transparent;border:1px solid var(--tusumba-outline-variant);color:var(--tusumba-primary)}.s1-btn.danger{background:var(--tusumba-error);color:var(--tusumba-on-error)}
+.s1-card{border:1px solid var(--tusumba-outline-variant);border-radius:17px;background:var(--tusumba-surface);padding:20px}
+.s1-card h3{font-size:16px;margin:0 0 14px;letter-spacing:-.2px}.s1-card p{font-size:12px;line-height:1.6;color:var(--tusumba-on-surface-variant)}
+.s1-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px}.s1-grid.equal{grid-template-columns:1fr 1fr}.s1-gap{display:flex;flex-direction:column;gap:16px}
+.s1-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}.s1-fields .wide{grid-column:1/-1}
+.s1-field{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:650;color:var(--tusumba-on-surface)}
+.s1-field input,.s1-field textarea,.s1-field select,.s1-search{background:var(--tusumba-surface);border:1px solid var(--tusumba-outline-variant);border-radius:10px;color:var(--tusumba-on-surface);padding:12px 13px;min-width:0;outline:0;font:inherit;font-size:12px;width:100%;box-sizing:border-box}
+.s1-field input:focus,.s1-field textarea:focus,.s1-field select:focus,.s1-search:focus{border-color:var(--tusumba-primary);box-shadow:0 0 0 2px var(--tusumba-primary-container)}
+.s1-field textarea{resize:vertical;min-height:100px}.s1-hint{font-weight:400;color:var(--tusumba-on-surface-variant);font-size:11px}
+.s1-upload{border:1px dashed var(--tusumba-outline);border-radius:13px;min-height:105px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;font-size:12px;color:var(--tusumba-on-surface-variant);background:var(--tusumba-surface-container-low)}
+.s1-footer-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;padding-top:12px;border-top:1px solid var(--tusumba-outline-variant)}
+.s1-pill{display:inline-flex;align-items:center;gap:5px;border-radius:100px;font-size:11px;font-weight:700;padding:7px 10px;white-space:nowrap;background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container)}
+.s1-pill.ok{background:#DFF5E9;color:#176447}.s1-pill.warn{background:#FFF0D1;color:#8B5613}.s1-pill.bad{background:var(--tusumba-error-container);color:var(--tusumba-on-error-container)}.s1-pill.neutral{background:var(--tusumba-surface-container);color:var(--tusumba-on-surface-variant)}
+[data-theme=dark] .s1-pill.ok{background:#204735;color:#C2FFE2}[data-theme=dark] .s1-pill.warn{background:#544024;color:#FFDB8A}
+.s1-list{display:flex;flex-direction:column;gap:11px}.s1-listitem{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px;border:1px solid var(--tusumba-outline-variant);border-radius:13px;background:var(--tusumba-surface)}
+.s1-item-title{font-size:14px;font-weight:750;margin:0 0 7px}.s1-muted{font-size:12px;color:var(--tusumba-on-surface-variant);line-height:1.55}.s1-item-right{display:flex;align-items:flex-end;gap:9px;flex-direction:column}
+.s1-action{color:var(--tusumba-primary);font:inherit;font-size:12px;font-weight:700;border:0;background:none;cursor:pointer;padding:5px 0}
+.s1-chips{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0}.s1-chip{cursor:pointer;border:1px solid var(--tusumba-outline-variant);border-radius:100px;padding:8px 12px;background:var(--tusumba-surface);color:var(--tusumba-on-surface-variant);font:inherit;font-size:12px;font-weight:600}.s1-chip.active{background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container);border-color:var(--tusumba-primary-container)}
+.s1-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:19px}.s1-stat{border:1px solid var(--tusumba-outline-variant);background:var(--tusumba-surface);border-radius:14px;padding:15px}.s1-stat strong{display:block;font-size:24px;margin-bottom:5px;color:var(--tusumba-primary)}.s1-stat span{font-size:11px;color:var(--tusumba-on-surface-variant)}
+.s1-avatar{border-radius:22px;background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container);display:grid;place-items:center;font-size:25px;font-weight:750;width:78px;height:78px}
+.s1-profilehead{display:flex;align-items:center;gap:17px}.s1-profilehead h3{margin-bottom:4px}
+.s1-itemline{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--tusumba-outline-variant);padding:13px 0;font-size:12px}.s1-itemline:last-child{border:0}.s1-itemline strong{color:var(--tusumba-on-surface)}.s1-itemline span{color:var(--tusumba-on-surface-variant)}
+.s1-table{width:100%;border-collapse:collapse;font-size:12px}.s1-table th{text-align:left;color:var(--tusumba-on-surface-variant);font-weight:650;border-bottom:1px solid var(--tusumba-outline-variant);padding:12px 9px}.s1-table td{padding:16px 9px;border-bottom:1px solid var(--tusumba-outline-variant);vertical-align:middle}.s1-table tr:last-child td{border:0}.s1-table td:first-child{font-weight:700}
+.s1-note{padding:13px 15px;border-radius:12px;background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container);font-size:12px;line-height:1.6}
+.s1-alert{background:var(--tusumba-error-container);color:var(--tusumba-on-error-container);border-radius:10px;padding:13px;font-size:12px;margin:10px 0}
+.s1-blank{min-height:320px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;padding:45px 25px}
+.s1-blank .emoji{display:grid;place-items:center;font-size:28px;border-radius:20px;width:64px;height:64px;background:var(--tusumba-primary-container);color:var(--tusumba-on-primary-container)}.s1-blank h3{margin:4px 0;font-size:18px}.s1-blank p{max-width:350px;margin:0 0 8px;font-size:12px;color:var(--tusumba-on-surface-variant);line-height:1.6}
+.s1-skeleton{border-radius:9px;background:linear-gradient(90deg,var(--tusumba-surface-container) 15%,var(--tusumba-surface-container-high) 45%,var(--tusumba-surface-container) 80%);background-size:200% 100%;animation:s1-shimmer 1.5s linear infinite}@keyframes s1-shimmer{to{background-position-x:-200%}}
+.s1-entries{display:flex;flex-direction:column;gap:10px}.s1-entries>div{height:55px}.s1-modal-back{position:absolute;inset:0;background:#0C122A88;display:grid;place-items:center;z-index:5;padding:14px}.s1-modal{border-radius:20px;max-width:430px;width:100%;padding:23px;background:var(--tusumba-surface);color:var(--tusumba-on-surface);box-shadow:0 20px 80px #1113}.s1-modal h3{margin:0 0 8px}.s1-modal textarea{width:100%;box-sizing:border-box;margin:12px 0;padding:12px;border:1px solid var(--tusumba-outline-variant);border-radius:10px;background:var(--tusumba-surface);color:var(--tusumba-on-surface);font:inherit;min-height:85px}
+.s1-framearea{position:relative}.s1-toast{position:absolute;right:22px;bottom:15px;background:var(--tusumba-inverse-surface);color:var(--tusumba-inverse-on-surface);padding:13px 18px;border-radius:11px;font-size:12px;box-shadow:0 8px 18px #0002;max-width:80%}
+.s1-devnote{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.s1-devnote>div{flex:1;min-width:190px;border:1px solid var(--tusumba-outline-variant);border-radius:13px;padding:13px 15px;font-size:12px;line-height:1.6;color:var(--tusumba-on-surface-variant)}
+.s1-app.mobile .s1-top{height:62px;padding:0 17px}.s1-app.mobile .s1-toplinks{gap:10px}.s1-app.mobile .s1-toplinks span{display:none}.s1-app.mobile .s1-logo{font-size:17px}.s1-app.mobile .s1-page{padding:22px 17px 74px}.s1-app.mobile .s1-title{font-size:25px}.s1-app.mobile .s1-headrow{align-items:flex-start}.s1-app.mobile .s1-headrow .s1-btn{padding:10px;font-size:11px}.s1-app.mobile .s1-grid,.s1-app.mobile .s1-grid.equal,.s1-app.mobile .s1-fields{grid-template-columns:1fr}.s1-app.mobile .s1-stats{grid-template-columns:repeat(3,1fr)}.s1-app.mobile .s1-card{padding:16px}.s1-app.mobile .s1-listitem{flex-direction:column;align-items:stretch}.s1-app.mobile .s1-item-right{flex-direction:row;justify-content:space-between;align-items:center}.s1-app.mobile .s1-table th:nth-child(2),.s1-app.mobile .s1-table td:nth-child(2){display:none}.s1-app.mobile .s1-table th,.s1-app.mobile .s1-table td{padding:11px 5px;font-size:11px}.s1-app.mobile .s1-stat strong{font-size:20px}.s1-app.mobile .s1-profilehead{align-items:flex-start}.s1-app.mobile .s1-avatar{width:60px;height:60px;font-size:18px}.s1-app.mobile .s1-headrow{margin-bottom:18px}
+@media(max-width:750px){.s1-toolbar{align-items:stretch}.s1-toolbar label{flex:1 1 160px}.s1-stage{justify-content:flex-start;padding:18px 8px 28px}.s1-app:not(.mobile){transform-origin:top left}.s1-app.mobile{flex-basis:370px;width:370px}}
+@media(prefers-reduced-motion:reduce){.s1-skeleton{animation:none}}
+</style></head><body data-theme="light">
+<header><div class="wrap top"><span class="brand">tusumba</span><div class="nav"><a href="#colors">Foundations</a><a href="#buttons">Components</a><a href="#states">States</a><a href="#wf-section">Вайрфреймы #18899</a><a href="#auth-preview">Вход / Регистрация</a></div><button class="toggle" onclick="document.body.dataset.theme=document.body.dataset.theme==='light'?'dark':'light';this.textContent=document.body.dataset.theme==='light'?'◐ Тёмная тема':'☀ Светлая тема'">◐ Тёмная тема</button></div></header>
+<main class="wrap"><div class="hero"><div class="orbit"></div><div class="orb2"></div><h1>Место, где<br>встречаются люди</h1><p>Tusumba Design System v1.0 · Material Design 3 · Draft</p></div>
+<section><h2>Цветовая система</h2><p class="desc">35 семантических ролей, готовых к вебу и переносу в Compose. Переключение темы сверху.</p><div class="colors" id="swatches"></div></section>
+<section><h2>Типографика</h2><p class="desc">Roboto / шкала Material 3 — от Display до Label.</p><div class="typos"><div class="type"><small>Display small / 36 · 44</small><div style="font-size:36px;line-height:44px">Твои новые впечатления</div></div><div class="type"><small>Headline medium / 28 · 36</small><div style="font-size:28px;line-height:36px">Мероприятия рядом</div></div><div class="type"><small>Title large / 22 · 28</small><div style="font-size:22px;line-height:28px">Найди занятие по душе</div></div><div class="type"><small>Body medium / 14 · 20</small><div style="font-size:14px;line-height:20px">Смотри афишу, выбирай секции, записывайся и приглашай друзей.</div></div></div></section>
+<section><h2>Кнопки и фильтры</h2><p class="desc">Базовые варианты с поддержкой hover, focus и disabled.</p><div class="panel"><div class="buttons"><button class="btn">Записаться</button><button class="btn tonal">Купить билет</button><button class="btn outlined">Фильтры</button><button class="btn text">Подробнее</button><button class="btn" disabled>Недоступно</button></div><div class="buttons" style="margin-top:26px"><button class="chip selected">✓ Все</button><button class="chip">Музыка</button><button class="chip">Спорт</button><button class="chip">Мастер-классы</button><button class="chip">Театр</button></div></div></section>
+<section><h2>Поля ввода</h2><p class="desc">Подпись, фокус и ошибки валидации.</p><div class="panel"><label class="field">Поиск мероприятий<input placeholder="Название или место"></label><label class="field err">Электронная почта<input value="user@" aria-invalid="true"><small>Укажите корректный адрес</small></label></div></section>
+<section><h2>Карточка мероприятия</h2><p class="desc">Переиспользуемая схема карточки: обложка, название, время, адрес и целевое действие.</p><div class="cards" id="cards"></div></section>
+<section><h2>Состояния</h2><p class="desc">Включены загрузка, пустая выдача и ошибка.</p><div class="states"><div class="state"><div class="skeleton" style="height:90px"></div><div class="skeleton" style="width:75%"></div><div class="skeleton" style="width:55%"></div><h3>Загрузка</h3></div><div class="state"><div class="graphic">⌕</div><h3>Ничего не найдено</h3><p>Измените фильтры или попробуйте другой запрос</p><button class="btn tonal">Сбросить фильтры</button></div><div class="state"><div class="graphic">!</div><h3>Не удалось загрузить</h3><p>Проверьте соединение и повторите попытку</p><button class="btn">Повторить</button></div></div></section>
+<section><h2>Адаптация под мобильный веб</h2><p class="desc">Нижняя навигация используется в мобильной версии сайта (Android-приложения в текущем плане нет).</p><div class="mobile"><div class="brand">tusumba</div><h3>Куда пойдём?</h3><label class="field" style="width:100%"><input placeholder="⌕  Поиск событий"></label><div class="buttons" style="margin:18px 0"><button class="chip selected">Все</button><button class="chip">Концерты</button></div><div id="mobilecard"></div><div class="mobnav"><b>◉ Мероприятия</b><span>▦ Секции</span><span>♡ Друзья</span><span>○ Профиль</span></div></div></section>
+
+<section id="wf-section">
+ <h2>Вайрфреймы · Спринт 1 <span style="font-size:14px;font-weight:500;opacity:.55">#18899</span></h2>
+ <p class="desc">Все шесть экранов из задания, состояния и мобильная адаптация. Это проектные схемы, а не подтверждение готовности API. Изображения обозначены плейсхолдерами.</p>
+ <div class="wf-shell">
+  <div class="wf-controls">
+   <label>Экран <select id="wf-screen"><option value="events">Каталог мероприятий</option><option value="event">Страница мероприятия</option><option value="clubs">Каталог секций</option><option value="club">Страница секции</option><option value="login">Вход</option><option value="register">Регистрация</option></select></label>
+   <label>Состояние <select id="wf-state"><option value="normal">Обычное</option><option value="loading">Загрузка</option><option value="empty">Пустое / нет данных</option><option value="error">Ошибка</option></select></label>
+   <div class="wf-radio" role="group" aria-label="Формат"><button type="button" data-wf-device="desktop" aria-pressed="true">▣ Desktop</button><button type="button" data-wf-device="mobile" aria-pressed="false">▯ Mobile</button></div>
+  </div>
+  <div class="wf-stage"><div id="wf-viewport" class="wf-viewport" aria-live="polite"></div></div>
+ </div>
+ <div class="wf-preview-notes"><div><strong>Стандартные состояния</strong>Загрузка — skeleton; пусто — объяснение с действием; ошибка — повтор запроса. Для формы «пусто» означает незаполненные поля.</div><div><strong>Мероприятия</strong>Кнопка «Пойду» отвечает за запись, а покупка билета — отдельный будущий сценарий. Нужно подтвердить границы с Ticketing.</div><div><strong>Секции</strong>В каталоге есть фильтры, в карточке — расписание и «Записаться». Доступность мест и формат записи уточняются с аналитиками.</div></div>
+</section>
+
+<section id="auth-preview">
+ <h2>Вход и регистрация</h2>
+ <p class="desc">Новые экраны Tusumba · Desktop 1440 / Mobile 412 · Редактируемый макет есть в Figma. Здесь — интерактивное HTML-превью без отправки данных на сервер.</p>
+ <div class="preview-toolbar">
+  <div class="preview-options">
+   <div class="auth-segment" aria-label="Выбор экрана" role="group"><button type="button" data-auth-switch="login" aria-pressed="true">Вход</button><button type="button" data-auth-switch="register" aria-pressed="false">Регистрация</button></div>
+   <div class="auth-segment" aria-label="Выбор устройства" role="group"><button type="button" data-device-switch="desktop" aria-pressed="true">◫ Desktop</button><button type="button" data-device-switch="mobile" aria-pressed="false">▯ Mobile</button></div>
+  </div><span class="small-note">Поля и кнопки можно проверить в браузере</span>
+ </div>
+ <div class="auth-stage"><div class="auth-canvas" id="authCanvas">
+  <aside class="auth-promo" aria-hidden="true">
+   <div class="auth-brand"><span class="auth-logo-icon"></span>tusumba</div>
+   <div class="auth-eyebrow">Живи ярче каждый день</div>
+   <h3 id="authPromoTitle">Мир интересного<br>совсем рядом.</h3>
+   <p id="authPromoText">Ищи события и секции, находи друзей и открывай новые увлечения вместе с Tusumba.</p>
+   <div class="auth-feature"><span class="auth-feature-icon" id="authFeatureIcon">✳</span><div><strong id="authFeatureTitle">Куда сходить в выходные?</strong><small id="authFeatureText">Подборка событий рядом с тобой</small></div></div>
+   <div class="auth-foot">TUSUMBA / СОБЫТИЯ И СЕКЦИИ</div>
+  </aside>
+  <div class="auth-work">
+   <div class="auth-topline"><div class="auth-mini-logo"><span class="auth-logo-icon"></span>tusumba</div><button class="auth-go-back" type="button" id="authBack">← К мероприятиям</button><span class="auth-minor" id="authHeaderQuestion">Ещё нет аккаунта? <button class="auth-togglelink" type="button" data-auth-switch="register">Регистрация</button></span></div>
+   <div class="auth-main">
+    <div class="auth-mode active" data-mode="login">
+     <p class="auth-overline">ДОБРО ПОЖАЛОВАТЬ</p><h3>С возвращением!</h3><p class="auth-intro">Войди, чтобы продолжить находить события и управлять своими записями.</p>
+     <form id="authLoginForm" novalidate><div class="auth-fields">
+      <label class="auth-form-field">Электронная почта<span class="auth-fieldwrap"><input type="email" name="email" placeholder="name@example.com" autocomplete="email" required></span><span class="auth-hint" data-error-for="email"></span></label>
+      <label class="auth-form-field">Пароль<span class="auth-fieldwrap"><input type="password" name="password" placeholder="Введите пароль" autocomplete="current-password" required><button type="button" class="auth-password-toggle">Показать</button></span><span class="auth-hint" data-error-for="password"></span></label>
+     </div><div class="auth-meta"><button class="auth-link" type="button" id="authForgot">Забыли пароль?</button></div><button class="auth-submit" type="submit">Войти</button><div class="auth-message" role="status" aria-live="polite"></div></form>
+     <div class="auth-below">Нет аккаунта? <button class="auth-link" type="button" data-auth-switch="register">Зарегистрироваться</button></div>
+    </div>
+    <div class="auth-mode" data-mode="register">
+     <p class="auth-overline">СОЗДАЙ ПРОФИЛЬ</p><h3>Присоединяйся!</h3><p class="auth-intro">Самое интересное начинается с одного шага.</p>
+     <form id="authRegisterForm" novalidate><div class="auth-fields">
+      <label class="auth-form-field">Имя и фамилия<span class="auth-fieldwrap"><input name="name" type="text" placeholder="Как к вам обращаться?" autocomplete="name" required></span><span class="auth-hint" data-error-for="name"></span></label>
+      <label class="auth-form-field">Электронная почта<span class="auth-fieldwrap"><input name="email" type="email" placeholder="name@example.com" autocomplete="email" required></span><span class="auth-hint" data-error-for="email"></span></label>
+      <label class="auth-form-field">Пароль<span class="auth-fieldwrap"><input name="password" type="password" placeholder="Минимум 8 символов" autocomplete="new-password" minlength="8" required><button type="button" class="auth-password-toggle">Показать</button></span><span class="auth-hint" data-error-for="password"></span></label>
+      <label class="auth-form-field">Повторите пароль<span class="auth-fieldwrap"><input name="confirm" type="password" placeholder="Введите пароль ещё раз" autocomplete="new-password" required><button type="button" class="auth-password-toggle">Показать</button></span><span class="auth-hint" data-error-for="confirm"></span></label>
+     </div>
+     <label class="auth-checkline"><input type="checkbox" name="agree" required><span>Принимаю условия использования и политику конфиденциальности</span></label>
+     <button class="auth-submit" type="submit">Зарегистрироваться</button><div class="auth-message" role="status" aria-live="polite"></div>
+     </form><div class="auth-below">Уже есть аккаунт? <button class="auth-link" type="button" data-auth-switch="login">Войти</button></div>
+    </div>
+   </div>
+   <div class="auth-footnote">© Tusumba · Политика конфиденциальности</div>
+  </div>
+ </div></div>
+ <div class="auth-draft"><strong>Демонстрационный макет.</strong> Проверки полей работают локально, но регистрация, вход и восстановление пароля не обращаются к API. Требования к полям необходимо согласовать с сервисом Identity.</div>
+</section>
+<section id="auth-notes"><h2>Правила для экранов авторизации</h2><p class="desc">Используемые сценарии и состояния для передачи разработчикам.</p><div class="auth-screens-grid"><div class="auth-note-card"><h3>Вход</h3><p>Email, пароль и переключатель видимости. Есть восстановление доступа, валидация адреса и сообщение о результате. При отсутствии аккаунта — переход к регистрации.</p></div><div class="auth-note-card"><h3>Регистрация</h3><p>Имя и фамилия, email, пароль от 8 символов, подтверждение, согласие с условиями. Несовпадение паролей и незаполненные обязательные поля подсвечиваются.</p></div></div></section>
+</main><div class="footer">Tusumba Design System v1.3 · Wireframes + Auth · Tasks #18898 / #18899 · Proposed brand direction</div>
+<script>
+const roles=['primary','onPrimary','primaryContainer','onPrimaryContainer','secondary','onSecondary','secondaryContainer','onSecondaryContainer','tertiary','onTertiary','tertiaryContainer','onTertiaryContainer','error','onError','errorContainer','onErrorContainer','background','onBackground','surface','onSurface','surfaceVariant','onSurfaceVariant','outline','outlineVariant','inverseSurface','inverseOnSurface','inversePrimary','surfaceContainerLowest','surfaceContainerLow','surfaceContainer','surfaceContainerHigh','surfaceContainerHighest','surfaceTint','scrim','shadow'];
+const kebab=s=>s.replace(/[A-Z]/g,x=>'-'+x.toLowerCase());
+const sw=document.getElementById('swatches');roles.forEach(r=>{let x=document.createElement('div');x.className='swatch';x.innerHTML=`<div class="swatchcolor" style="background:var(--tusumba-${kebab(r)})"></div><div class="swatchname">${r}<br><code>var(--tusumba-${kebab(r)})</code></div>`;sw.appendChild(x)});
+function card(name,date,place,price,symbol){return `<article class="event"><div class="poster"><strong>TUSUMBA / EVENTS</strong><em>${symbol}</em></div><div class="details"><h3>${name}</h3><div class="metadata">◷ ${date}<br>⌖ ${place}</div><button class="btn buy">От ${price} ₽ · Купить</button></div></article>`};
+document.getElementById('cards').innerHTML=card('Музыка под открытым небом','14 ноября • 18:00','Городской парк',500,'♫')+card('Творческая мастерская','21 ноября • 12:00','Арт-пространство',900,'✳')+card('Вечер настольных игр','22 ноября • 17:00','Молодёжный центр',0,'✦');
+document.getElementById('mobilecard').innerHTML=card('Музыка под открытым небом','14 ноября • 18:00','Городской парк',500,'♫');
+</script>
+<script>
+(function(){
+ const root=document.getElementById('authCanvas');
+ const modes=[...root.querySelectorAll('.auth-mode')];
+ function switchAuth(mode){modes.forEach(el=>el.classList.toggle('active',el.dataset.mode===mode));document.querySelectorAll('[data-auth-switch]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.authSwitch===mode)));const signup=mode==='register';document.getElementById('authPromoTitle').innerHTML=signup?'Здесь начинаются<br>новые истории.':'Мир интересного<br>совсем рядом.';document.getElementById('authPromoText').textContent=signup?'Создай аккаунт, чтобы сохранять любимые мероприятия, записываться на занятия и встречаться с друзьями.':'Ищи события и секции, находи друзей и открывай новые увлечения вместе с Tusumba.';document.getElementById('authFeatureIcon').textContent=signup?'✦':'✳';document.getElementById('authFeatureTitle').textContent=signup?'Найди компанию по интересам':'Куда сходить в выходные?';document.getElementById('authFeatureText').textContent=signup?'Секции, встречи и новые знакомства':'Подборка событий рядом с тобой';document.getElementById('authHeaderQuestion').innerHTML=signup?'Уже есть аккаунт? <button class="auth-togglelink" type="button" data-auth-switch="login">Войти</button>':'Ещё нет аккаунта? <button class="auth-togglelink" type="button" data-auth-switch="register">Регистрация</button>';root.dataset.screen=mode;}
+ function switchDevice(device){root.classList.toggle('is-mobile',device==='mobile');document.querySelectorAll('[data-device-switch]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.deviceSwitch===device)));}
+ document.addEventListener('click',e=>{const a=e.target.closest('[data-auth-switch]');if(a&&a.closest('#auth-preview'))switchAuth(a.dataset.authSwitch);const d=e.target.closest('[data-device-switch]');if(d)switchDevice(d.dataset.deviceSwitch);const show=e.target.closest('.auth-password-toggle');if(show){const inp=show.parentElement.querySelector('input');inp.type=inp.type==='password'?'text':'password';show.textContent=inp.type==='password'?'Показать':'Скрыть';}});
+ function setError(form,name,msg){const inp=form.elements.namedItem(name);const wrap=inp?.closest('.auth-fieldwrap');if(wrap)wrap.classList.toggle('invalid',!!msg);if(inp)inp.setAttribute('aria-invalid',String(!!msg));const hint=form.querySelector(`[data-error-for="${name}"]`);if(hint)hint.textContent=msg||'';}
+ function message(form,msg,error=false){const el=form.querySelector('.auth-message');el.textContent=msg;el.classList.toggle('is-error',error);el.classList.add('is-visible');}
+ function validEmail(email){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());}
+ for(const form of [document.getElementById('authLoginForm'),document.getElementById('authRegisterForm')]){
+  form.addEventListener('input',e=>{const n=e.target.name;if(n&&['name','email','password','confirm'].includes(n))setError(form,n,'');form.querySelector('.auth-message').classList.remove('is-visible');});
+  form.addEventListener('submit',e=>{e.preventDefault();let ok=true;const signup=form.id==='authRegisterForm';const name=form.elements.namedItem('name')?.value.trim();const email=form.elements.namedItem('email').value.trim();const password=form.elements.namedItem('password').value;const confirm=form.elements.namedItem('confirm')?.value;
+   for(const n of signup?['name','email','password','confirm']:['email','password'])setError(form,n,'');
+   if(signup&&name.length<2){setError(form,'name','Введите имя (минимум 2 символа)');ok=false;}
+   if(!validEmail(email)){setError(form,'email','Введите корректный email');ok=false;}
+   if(password.length<(signup?8:1)){setError(form,'password',signup?'Минимум 8 символов':'Введите пароль');ok=false;}
+   if(signup&&confirm!==password){setError(form,'confirm','Пароли не совпадают');ok=false;}
+   if(signup&&!form.elements.namedItem('agree').checked){message(form,'Чтобы продолжить, подтвердите согласие с условиями.',true);ok=false;}
+   if(!ok){if(!signup || form.elements.namedItem('agree').checked)message(form,'Проверьте выделенные поля формы.',true);return;}
+   message(form,signup?'Проверка пройдена! Это демонстрация: аккаунт не создавался и данные не отправлялись.':'Поля заполнены! Это демонстрация: вход в аккаунт не выполнялся.');
+  });
+ }
+ document.getElementById('authForgot').addEventListener('click',()=>{message(document.getElementById('authLoginForm'),'Восстановление пароля — отдельный экран, здесь пока только UX-заглушка.');});
+ document.getElementById('authBack').addEventListener('click',()=>document.querySelector('#mobile-example').scrollIntoView({behavior:'smooth'}));
+ // Existing showcase headings become clickable navigation targets.
+ const ss=document.querySelectorAll('main > section');const existing=['colors','typography','buttons','inputs','cards','states','mobile-example'];existing.forEach((id,i)=>{if(ss[i])ss[i].id=id;});
+})();
+</script>
+
+<script>
+(()=>{
+ const page=document.getElementById('wf-screen'),state=document.getElementById('wf-state'),viewport=document.getElementById('wf-viewport');
+ if(!page||!state||!viewport)return;
+ const ev=[{t:'Вечер настольных игр',cat:'Встречи',date:'14 ноября · 17:00',where:'Молодёжный центр',price:'Бесплатно'},{t:'Музыка под открытым небом',cat:'Музыка',date:'21 ноября · 18:00',where:'Городской парк',price:'от 500 ₽'},{t:'Мастерская керамики',cat:'Творчество',date:'22 ноября · 12:00',where:'Арт-пространство',price:'от 900 ₽'},{t:'Научный лекторий',cat:'Образование',date:'26 ноября · 19:00',where:'Библиотека',price:'Бесплатно'},{t:'Турнир по шахматам',cat:'Спорт',date:'28 ноября · 11:00',where:'Шахматный клуб',price:'от 200 ₽'},{t:'Экскурсия по городу',cat:'Прогулки',date:'29 ноября · 14:00',where:'Центральная площадь',price:'Бесплатно'}];
+ const clubs=[{t:'Студия рисунка',cat:'Творчество',date:'Пн, Ср · 18:00',where:'Дом творчества',price:'от 2 000 ₽ / мес.'},{t:'Беговой клуб',cat:'Спорт',date:'Сб · 09:00',where:'Городской парк',price:'Бесплатно'},{t:'Разговорный английский',cat:'Образование',date:'Вт, Чт · 19:00',where:'Молодёжный центр',price:'от 1 500 ₽ / мес.'},{t:'Театральная студия',cat:'Творчество',date:'Пт · 17:00',where:'Дом культуры',price:'от 2 400 ₽ / мес.'},{t:'Клуб программирования',cat:'Образование',date:'Ср · 16:00',where:'Технопарк',price:'Бесплатно'},{t:'Йога для начинающих',cat:'Спорт',date:'Вс · 10:00',where:'Спортивный центр',price:'от 1 200 ₽ / мес.'}];
+ let chosen='Все', query='',went=false,joined=false,device='desktop';
+ const isClub=()=>['clubs','club'].includes(page.value);
+ const hdr=()=>`<header class="wf-header"><div class="wf-logo">◉ tusumba</div><div class="wf-links"><button class="${!isClub()?'wf-active':''}" data-wf-nav="events">Мероприятия</button><button class="${isClub()?'wf-active':''}" data-wf-nav="clubs">Секции</button><button type="button">Друзья</button></div><button class="wf-login" data-wf-nav="login">Войти</button></header>`;
+ const footer=()=>`<nav class="wf-mobile-nav" aria-label="Нижняя навигация"><button class="${!isClub()?'active':''}" data-wf-nav="events">◉<br>Афиша</button><button class="${isClub()?'active':''}" data-wf-nav="clubs">▦<br>Секции</button><button>♡<br>Друзья</button><button data-wf-nav="login">◌<br>Профиль</button></nav>`;
+ const card=(o,club)=>`<article class="wf-card"><div class="wf-picture" aria-label="Плейсхолдер обложки">▧<span class="wf-date-tag">${club?'СЕКЦИЯ':'СОБЫТИЕ'}</span></div><div class="wf-cardbody"><div class="wf-category">${o.cat}</div><h3>${o.t}</h3><p>◷ ${o.date}<br>⌖ ${o.where}</p><div class="wf-row"><strong>${o.price}</strong><button class="wf-secondary" data-wf-nav="${club?'club':'event'}">Подробнее</button></div></div></article>`;
+ const sk=(w,h)=>`<div class="wf-skeleton" style="width:${w};height:${h}px"></div>`;
+ const feedback=(title,desc,icon,action,fn='normal')=>`<div class="wf-feedback"><div class="wf-feedback-inner"><div class="wf-feedback-icon">${icon}</div><h2>${title}</h2><p>${desc}</p><button class="wf-primary" data-wf-state="${fn}">${action}</button></div></div>`;
+ function loading(){return `<div class="wf-main">${sk('46%',33)}<div style="height:14px"></div>${sk('62%',13)}<div class="wf-loading-grid">${[1,2,3].map(()=>`<div class="wf-loading-card">${sk('100%',126)}${sk('80%',15)}${sk('55%',13)}${sk('95%',32)}</div>`).join('')}</div></div>`}
+ function message(){const kind=page.value,err=state.value==='error',isAuth=kind==='login'||kind==='register';
+   if(isAuth)return auth(kind,err?'error':state.value);
+   if(state.value==='loading')return loading();
+   if(state.value==='error')return feedback('Не удалось загрузить данные','Сервер временно недоступен или пропало соединение. Попробуйте ещё раз.','!','Повторить');
+   const t=kind==='events'?'Мероприятия не найдены':kind==='clubs'?'Секции не найдены':kind==='event'?'Мероприятие недоступно':'Секция недоступна';
+   const d=(kind==='events'||kind==='clubs')?'Попробуйте другой запрос или сбросьте выбранные фильтры.':'Возможно, страница была удалена или доступ к ней ограничен.';
+   return feedback(t,d,'⌕',kind==='events'||kind==='clubs'?'Сбросить фильтры':'Вернуться к каталогу');
+ }
+ function catalog(club){const data=club?clubs:ev;const categories=club?['Все','Спорт','Творчество','Образование']:['Все','Музыка','Спорт','Творчество','Образование','Встречи'];
+  const filtered=data.filter(o=>(chosen==='Все'||o.cat===chosen)&&(!query||`${o.t} ${o.where}`.toLowerCase().includes(query.toLowerCase())));
+  const cards=filtered.length?`<div class="wf-grid">${filtered.map(o=>card(o,club)).join('')}</div>`:feedback('Ничего не нашлось','Измени фильтры или введи другой поисковый запрос.','⌕','Сбросить фильтры');
+  return `<div class="wf-main"><div class="wf-kicker">${club?'Найди своё занятие':'Афиша и впечатления'}</div><h2>${club?'Секции и кружки':'Куда пойдём?'}</h2><p class="wf-intro">${club?'Спорт, творчество и обучение в удобное время.':'Выбирай интересные события, знакомься с людьми и проводи время ярче.'}</p><label class="wf-searchbar">⌕ <input id="wf-find" type="search" value="${query.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}" placeholder="${club?'Найти секцию или направление':'Название события или место'}" aria-label="Поиск"></label><div class="wf-filterline">${categories.map(c=>`<button data-wf-chip="${c}" class="wf-chip ${c===chosen?'wf-on':''}">${c}</button>`).join('')}</div><div class="wf-row" style="margin-bottom:13px"><h3>${club?'Все секции':'Ближайшие мероприятия'}</h3><span class="wf-muted">Найдено: ${filtered.length}</span></div>${cards}</div>`;
+ }
+ function detail(club){const o=club?clubs[0]:ev[0];const action=club?(joined?'Вы записаны ✓':'Записаться'):(went?'Вы идёте ✓':'Пойду');
+  return `<div class="wf-main"><button class="wf-back" data-wf-nav="${club?'clubs':'events'}">← ${club?'К каталогу секций':'К афише'}</button><div class="wf-detail-grid"><div><div class="wf-hero-placeholder" aria-label="Обложка"></div><span class="wf-tag">${o.cat}</span><span class="wf-tag">${club?'Регулярные занятия':'Открытое событие'}</span><h2 style="margin-top:16px">${o.t}</h2><p class="wf-intro">${club?'Занятия для начинающих и тех, кто хочет развивать свои навыки.':'Встречаемся, общаемся и проводим время за любимыми настольными играми.'}</p><h3 class="wf-section-title">О ${club?'секции':'мероприятии'}</h3><p class="wf-paragraph">${club?'На занятиях участники изучают основы, практикуются в небольшой группе и получают поддержку наставника. Программа рассчитана на разные уровни подготовки.':'Организаторы подготовили подборку игр для разной компании. Можно прийти одному или с друзьями — мы поможем присоединиться к партии.'}</p><h3 class="wf-section-title">${club?'Расписание':'Программа'}</h3><div class="wf-list-simple">◷ <span>${club?'Понедельник и среда, 18:00–19:30':'Сбор участников — 17:00'}</span></div><div class="wf-list-simple">⌖ <span>${o.where}</span></div><h3 class="wf-section-title">Организатор</h3><div class="wf-notice">◉ ${club?'Дом творчества':'Клуб настольных игр'} <span class="wf-muted"> · проверенный профиль — проектное допущение</span></div></div><aside class="wf-info"><p class="wf-kicker">${club?'ЗАПИСЬ НА ЗАНЯТИЯ':'УЧАСТИЕ'}</p><h3>${club?'Присоединяйся':'Приходи на встречу'}</h3><div class="wf-meta">◷ <span>${o.date}</span></div><div class="wf-meta">⌖ <span>${o.where}</span></div><div class="wf-meta">${club?'▦':'◈'} <span>${o.price}</span></div><div class="wf-meta">○ <span>Количество мест: уточняется</span></div><button class="wf-primary" data-wf-action="${club?'join':'go'}">${action}</button><button class="wf-secondary" type="button" data-wf-action="share">Поделиться</button><p style="font-size:11px;margin-top:12px">${club?'Подтверждение записи зависит от правил секции.':'«Пойду» — выражение намерения участвовать. Покупка билета — отдельная функция.'}</p></aside></div></div>`;
+ }
+ function auth(kind,kindstate){const signup=kind==='register',error=kindstate==='error',loading=kindstate==='loading';
+   return `<div class="wf-authwrap"><aside class="wf-authpromo"><div class="wf-kicker" style="color:#b7ffed">TUSUMBA · СОБЫТИЯ И СЕКЦИИ</div><h2>${signup?'Новые знакомства начинаются здесь':'Мир интересного совсем рядом'}</h2><p>Находи мероприятия и секции, общайся с друзьями и открывай новое.</p></aside><div class="wf-authform"><p class="wf-kicker">${signup?'СОЗДАЙ ПРОФИЛЬ':'ДОБРО ПОЖАЛОВАТЬ'}</p><h2>${signup?'Регистрация':'С возвращением!'}</h2><p class="wf-muted">${signup?'Заполни несколько полей, чтобы присоединиться.':'Войди, чтобы продолжить.'}</p><form id="wf-form" novalidate>${signup?`<label class="wf-fieldlabel">Имя и фамилия</label><input class="wf-field" name="name" placeholder="Как к вам обращаться?" ${loading?'disabled':''}>`:''}<label class="wf-fieldlabel">Электронная почта</label><input class="wf-field" name="email" type="email" placeholder="name@example.com" ${loading?'disabled':''}><label class="wf-fieldlabel">Пароль</label><input class="wf-field" name="password" type="password" placeholder="Минимум 8 символов" ${loading?'disabled':''}>${signup?`<label class="wf-fieldlabel">Повторите пароль</label><input class="wf-field" name="confirm" type="password" placeholder="Введите пароль ещё раз" ${loading?'disabled':''}><label class="wf-checkbox"><input name="consent" type="checkbox" ${loading?'disabled':''}>Согласен с условиями использования и политикой конфиденциальности</label>`:`<div style="text-align:right;margin-top:10px"><button type="button" style="border:0;background:transparent;color:var(--tusumba-primary);font-size:12px">Забыли пароль?</button></div>`}${error?`<div class="wf-auth-error">${signup?'Проверьте обязательные поля и совпадение паролей.':'Неправильный email или пароль либо сервер недоступен.'}</div>`:''}<button class="wf-primary" type="submit" ${loading?'disabled':''}>${loading?'Проверяем…':signup?'Зарегистрироваться':'Войти'}</button></form><div class="wf-formbottom">${signup?'Уже есть аккаунт?':'Нет аккаунта?'} <button data-wf-nav="${signup?'login':'register'}">${signup?'Войти':'Зарегистрироваться'}</button></div></div></div>`;
+ }
+ function render(){const k=page.value;const body=(state.value!=='normal' && !(k==='login'||k==='register'))?message():(k==='events'?catalog(false):k==='clubs'?catalog(true):k==='event'?detail(false):k==='club'?detail(true):auth(k,state.value));
+ viewport.innerHTML=hdr()+body+footer();viewport.classList.toggle('is-mobile',device==='mobile');document.querySelectorAll('[data-wf-device]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.wfDevice===device)));
+ }
+ page.addEventListener('change',()=>{chosen='Все';query='';state.value='normal';render()});state.addEventListener('change',render);
+ document.addEventListener('click',e=>{const el=e.target.closest('[data-wf-device],[data-wf-chip],[data-wf-nav],[data-wf-state],[data-wf-action]');if(!el)return;
+ if(el.dataset.wfDevice){device=el.dataset.wfDevice;render();return}
+ if(el.dataset.wfChip){chosen=el.dataset.wfChip;render();return}
+ if(el.dataset.wfNav){page.value=el.dataset.wfNav;state.value='normal';chosen='Все';query='';render();return}
+ if(el.dataset.wfState){if(el.dataset.wfState==='normal'){state.value='normal';chosen='Все';query=''}render();return}
+ if(el.dataset.wfAction==='go'){went=!went;render();return}
+ if(el.dataset.wfAction==='join'){joined=!joined;render();return}
+ if(el.dataset.wfAction==='share'){navigator.clipboard?.writeText('Tusumba — ссылка на мероприятие (макет)').then(()=>{}).catch(()=>{});el.textContent='Скопировано (макет)';}
+ });
+ viewport.addEventListener('input',e=>{if(e.target.id==='wf-find'){query=e.target.value;const pos=e.target.selectionStart;render();const input=viewport.querySelector('#wf-find');if(input){input.focus();input.setSelectionRange(pos,pos)}}});
+ viewport.addEventListener('submit',e=>{if(e.target.id==='wf-form'){e.preventDefault();const data=new FormData(e.target);const email=(data.get('email')||'').toString(),pwd=(data.get('password')||'').toString();const signup=page.value==='register';if(!email.includes('@')||pwd.length<8||(signup&&(pwd!==data.get('confirm')||!data.get('consent')||!data.get('name')))){state.value='error';render();return;}const el=e.target.querySelector('.wf-primary');el.textContent='Проверка пройдена — демо';}});
+ render();
+})();
+</script>
+
+
+<section id="s1-19063">
+ <h2>Макеты · Спринт 1 <span style="font-size:14px;font-weight:500;opacity:.55">#19063</span></h2>
+ <p class="desc">Форма заявки на публикацию события, мои заявки, профиль, мои записи и рабочее место модератора. Просматривайте адаптацию и состояния. Демонстрационные данные; реальный API и схема прав требуют согласования.</p>
+ <div class="s1-shell">
+  <div class="s1-toolbar">
+   <label>Экран<select id="s1-view"><option value="apply">Новая заявка</option><option value="myapps">Мои заявки</option><option value="profile">Личный кабинет · профиль</option><option value="registrations">Личный кабинет · мои записи</option><option value="queue">Модератор · очередь</option><option value="review">Модератор · карточка заявки</option></select></label>
+   <label>Состояние<select id="s1-state"><option value="normal">Обычное</option><option value="loading">Загрузка</option><option value="empty">Нет данных / начальное</option><option value="error">Ошибка</option></select></label>
+   <div class="s1-switch" role="group" aria-label="Ширина экрана"><button type="button" data-s1-device="desktop" aria-pressed="true">▣ Desktop</button><button type="button" data-s1-device="mobile" aria-pressed="false">▯ Mobile</button></div>
+  </div>
+  <div class="s1-stage"><div id="s1-viewport" class="s1-app s1-framearea" aria-live="polite"></div></div>
+ </div>
+ <div class="s1-devnote"><div><strong>Разделение сущностей</strong><div>«Заявки» — запрос на публикацию мероприятия, «записи» — участие в мероприятиях/секциях. Интерпретация заявки требует утверждения аналитиками.</div></div><div><strong>Модерация</strong><div>Одобрение и отказ — разные операции. У отказа обязательно указывается причина; действие подтверждается в диалоге.</div></div><div><strong>Android</strong><div>Версия 390 px показывает мобильный веб. Отдельного Android-приложения в текущем описании Tusumba нет, Compose требует отдельного решения команды.</div></div></div>
+</section>
+<script>
+(()=>{
+ const root=document.getElementById('s1-viewport'),view=document.getElementById('s1-view'),state=document.getElementById('s1-state');
+ let device='desktop',toast='',dialog='',decision='',editing=false,filter='Все',entryQuery='',applicationCounter=204;
+ const demo=[{id:'APP-204',title:'Фестиваль настольных игр',category:'Развлечения',by:'Мария Ковалева',date:'18 ноября 2026',status:'На проверке',submitted:'9 ноября, 12:30'}, {id:'APP-203',title:'Мастерская керамики',category:'Творчество',by:'Алексей Миронов',date:'21 ноября 2026',status:'Одобрена',submitted:'7 ноября, 16:40'},{id:'APP-202',title:'Лекция об архитектуре',category:'Образование',by:'Дарья Волкова',date:'24 ноября 2026',status:'Отклонена',submitted:'6 ноября, 11:00'},{id:'APP-201',title:'Встреча бегового клуба',category:'Спорт',by:'Игорь Ларин',date:'15 ноября 2026',status:'Черновик',submitted:'5 ноября, 10:15'}];
+ const stateLabel={normal:'Обычное',loading:'Загрузка',empty:'Нет данных',error:'Ошибка'};
+ const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+ const pill=(status)=>{const cl=status==='Одобрена'?'ok':status==='На проверке'?'warn':status==='Отклонена'?'bad':'neutral';return `<span class="s1-pill ${cl}">${esc(status)}</span>`};
+ const btn=(label,action,cls='')=>`<button type="button" class="s1-btn ${cls}" data-s1-action="${action}">${label}</button>`;
+ function header(mod){return `<div class="s1-top"><div class="s1-logo"><span class="s1-logo-mark"></span>tusumba</div><div class="s1-toplinks"><span>Мероприятия</span><span>Секции</span><strong>${mod?'Модерация':'Кабинет'}</strong><span class="s1-user">${mod?'М':'БЯ'}</span></div></div>`}
+ const heading=(eye,title,desc,action)=>`<div class="s1-headrow"><div><p class="s1-eyebrow">${eye}</p><h2 class="s1-title">${title}</h2><p class="s1-subtitle">${desc}</p></div>${action||''}</div>`;
+ const field=(label,placeholder,name,type='text',hint='',wide=false,required=false)=>`<label class="s1-field ${wide?'wide':''}"><span>${label}${required?' *':''}</span>${type==='textarea'?`<textarea name="${name}" placeholder="${placeholder}"></textarea>`:type==='select'?`<select name="${name}"><option value="">Выберите категорию</option><option>Творчество</option><option>Спорт</option><option>Образование</option><option>Развлечения</option><option>Музыка</option></select>`:`<input type="${type}" name="${name}" placeholder="${placeholder}" ${required?'required':''}>`}${hint?`<span class="s1-hint">${hint}</span>`:''}</label>`;
+ function apply(){return heading('Организатор / Публикация','Создать заявку','Заполните сведения о мероприятии, чтобы отправить его на проверку.')+`<form id="s1-application-form" class="s1-grid"><div class="s1-card"><h3>Информация о мероприятии</h3><div class="s1-fields">${field('Название','Например: Вечер настольных игр','title','text','',true,true)}${field('Категория','Выберите категорию','category','select','',false,true)}${field('Дата','', 'date','date','',false,true)}${field('Время начала','', 'time','time','',false,true)}${field('Адрес / место','Например: молодёжный центр','address','text','',false,true)}${field('Описание','Что будет происходить и кому подойдёт событие','description','textarea','Коротко и по делу — хотя бы 20 символов.',true,true)}<div class="wide s1-upload">▧　Обложка мероприятия (необязательно)<small>Изображение можно добавить позже · демонстрационный макет</small></div></div></div><div class="s1-gap"><div class="s1-card"><h3>Организатор и условия</h3><div class="s1-fields" style="grid-template-columns:1fr">${field('Контактное лицо','Имя организатора','contact','text','',true,true)}${field('Email для связи','name@example.com','email','email','',true,true)}${field('Ограничение мест','Например: 30','capacity','number','',true)}</div></div><div class="s1-note">ℹ После отправки заявка получит статус «На проверке». До одобрения событие не будет опубликовано.</div><div class="s1-footer-actions">${btn('Сохранить черновик','draft','outline')}<button type="submit" class="s1-btn">Отправить на проверку</button></div><div id="s1-validation" class="s1-alert" style="display:none" role="alert"></div></div></form>`}
+ function myapps(){return heading('Организатор / Управление','Мои заявки','Отслеживайте модерацию событий и возвращайтесь к черновикам.',btn('＋ Новая заявка','goto-apply'))+`<div class="s1-stats"><div class="s1-stat"><strong>4</strong><span>Всего заявок</span></div><div class="s1-stat"><strong>1</strong><span>На проверке</span></div><div class="s1-stat"><strong>1</strong><span>Черновиков</span></div></div><div class="s1-card"><div class="s1-chips"><button class="s1-chip active">Все</button><button class="s1-chip">На проверке</button><button class="s1-chip">Одобрены</button><button class="s1-chip">Отклонены</button></div><div class="s1-list">${demo.map(a=>`<div class="s1-listitem"><div><div class="s1-item-title">${esc(a.title)}</div><div class="s1-muted">${a.id} · ${a.category} · ${a.submitted}</div>${a.status==='Отклонена'?`<div class="s1-muted">Причина: недостаточно информации о месте проведения</div>`:''}</div><div class="s1-item-right">${pill(a.status)}<button class="s1-action" data-s1-action="${a.status==='Черновик'?'goto-apply':'detail-user'}">${a.status==='Черновик'?'Редактировать':'Подробнее'} →</button></div></div>`).join('')}</div></div>`}
+ function profile(){return heading('Личный кабинет / Аккаунт','Мой профиль','Основные сведения, настройки и контактные данные.',btn(editing?'Готово':'✎ Изменить','edit-profile','outline'))+`<div class="s1-grid"><div class="s1-gap"><div class="s1-card"><div class="s1-profilehead"><div class="s1-avatar">БЯ</div><div><h3>Борис Янин</h3><div class="s1-muted">Участник Tusumba · профиль активен</div></div></div><div style="margin-top:21px">${editing?`<div class="s1-fields" style="grid-template-columns:1fr">${field('Имя и фамилия','Борис Янин','profile-name')}${field('Электронная почта','name@example.com','profile-email','email')}</div>`:`<div class="s1-itemline"><strong>Имя</strong><span>Борис Янин</span></div><div class="s1-itemline"><strong>Электронная почта</strong><span>user@example.com</span></div><div class="s1-itemline"><strong>Город</strong><span>Не указан</span></div>`}</div></div></div><div class="s1-gap"><div class="s1-card"><h3>Мои разделы</h3><div class="s1-listitem"><div><b>Мои записи</b><div class="s1-muted">Ближайшие занятия и события</div></div><button data-s1-action="goto-registrations" class="s1-action">Открыть →</button></div><div class="s1-listitem" style="margin-top:10px"><div><b>Мои заявки</b><div class="s1-muted">Запросы на публикацию</div></div><button data-s1-action="goto-myapps" class="s1-action">Открыть →</button></div></div><div class="s1-note">🔒 Изменение пароля и управление уведомлениями — отдельные сценарии. Здесь пока структура интерфейса.</div></div></div>`}
+ function registrations(){return heading('Личный кабинет / Активности','Мои записи','Сохранённые записи на мероприятия и занятия.',btn('Найти мероприятия','goto-events','outline'))+`<div class="s1-chips"><button class="s1-chip active">Предстоящие</button><button class="s1-chip">Прошедшие</button><button class="s1-chip">Отменённые</button></div><div class="s1-grid equal"><div class="s1-card"><span class="s1-pill ok">Подтверждена</span><h3 style="margin:17px 0 8px">Вечер настольных игр</h3><p>◷ 14 ноября · 17:00<br>⌖ Молодёжный центр<br>○ 1 участник</p><div class="s1-footer-actions">${btn('Подробнее','details-event','outline')} ${btn('Отменить запись','cancel-registration','secondary')}</div></div><div class="s1-card"><span class="s1-pill warn">Ожидает подтверждения</span><h3 style="margin:17px 0 8px">Студия рисунка</h3><p>◷ Понедельник и среда · 18:00<br>⌖ Дом творчества<br>○ Абонемент / условия уточняются</p><div class="s1-footer-actions">${btn('Подробнее','details-club','outline')}</div></div></div>`}
+ function queue(){return heading('Модерация / Входящие','Очередь заявок','Просмотр событий, ожидающих решения.',btn('Обновить','refresh','outline'))+`<div class="s1-stats"><div class="s1-stat"><strong>8</strong><span>Ожидают решения</span></div><div class="s1-stat"><strong>3</strong><span>За сегодня</span></div><div class="s1-stat"><strong>12</strong><span>Рассмотрено за неделю</span></div></div><div class="s1-card"><div style="display:flex;gap:12px;flex-wrap:wrap"><input id="s1-search" class="s1-search" style="flex:1;min-width:140px" placeholder="⌕ Поиск по названию или номеру" value="${esc(entryQuery)}"><select class="s1-search" style="width:auto"><option>Сначала старые</option><option>Сначала новые</option></select></div><div class="s1-chips">${['Все','На проверке','Новые','Обработанные'].map(f=>`<button type="button" class="s1-chip ${filter===f?'active':''}" data-s1-filter="${f}">${f}</button>`).join('')}</div><table class="s1-table"><thead><tr><th>Заявка</th><th>Организатор / Дата</th><th>Статус</th><th>Действие</th></tr></thead><tbody>${[{...demo[0]},{id:'APP-205',title:'Городской кинопоказ',by:'Анна Тихонова',submitted:'9 ноября, 09:12',status:'На проверке'},{id:'APP-206',title:'Мастер-класс по печати',by:'Павел Синицын',submitted:'8 ноября, 18:00',status:'На проверке'}].filter(a=>(!entryQuery||a.title.toLowerCase().includes(entryQuery.toLowerCase())||a.id.toLowerCase().includes(entryQuery.toLowerCase()))&&(filter!=='Обработанные')).map(a=>`<tr><td>${a.title}<div class="s1-muted">${a.id}</div></td><td><span>${a.by}</span><div class="s1-muted">${a.submitted}</div></td><td>${pill(a.status)}</td><td><button class="s1-action" data-s1-action="goto-review">Открыть →</button></td></tr>`).join('')||'<tr><td colspan="4" style="text-align:center">Нет заявок по этому запросу</td></tr>'}</tbody></table></div>`}
+ function review(){return heading('Модерация / APP-204','Карточка заявки','Проверьте сведения и примите решение.',btn('← К очереди','goto-queue','outline'))+`<div class="s1-grid"><div class="s1-gap"><div class="s1-card"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><h3>Фестиваль настольных игр</h3>${pill('На проверке')}</div><div class="s1-itemline"><strong>ID заявки</strong><span>APP-204</span></div><div class="s1-itemline"><strong>Организатор</strong><span>Мария Ковалева</span></div><div class="s1-itemline"><strong>Категория</strong><span>Развлечения</span></div><div class="s1-itemline"><strong>Дата</strong><span>18 ноября 2026, 17:00</span></div><div class="s1-itemline"><strong>Место</strong><span>Молодёжный центр</span></div><h3 style="margin-top:20px">Описание</h3><p>Открытая встреча для любителей настольных игр. Можно прийти одному или с друзьями. Организатор предоставляет игры и объясняет правила.</p><div class="s1-note">Вложенная обложка или подтверждающие материалы — если поддерживаются контрактом API.</div></div></div><div class="s1-gap"><div class="s1-card"><h3>Решение модератора</h3><p>Проверьте, что описание корректно и мероприятие соответствует правилам площадки.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin:18px 0">${btn('✓ Одобрить','approve')} ${btn('✕ Отклонить','reject','danger')}</div><p>При отклонении укажите причину: она должна быть понятна автору заявки.</p></div><div class="s1-card"><h3>История</h3><div class="s1-itemline"><strong>9 ноября · 12:30</strong><span>Заявка отправлена</span></div><div class="s1-itemline"><strong>9 ноября · 12:30</strong><span>Ожидает модерации</span></div></div></div></div>`}
+ function special(){const key=view.value,st=state.value,subject={apply:'Форма заявки',myapps:'Мои заявки',profile:'Профиль',registrations:'Мои записи',queue:'Очередь заявок',review:'Карточка заявки'}[key];const mod=key==='queue'||key==='review';let headingTitle=heading(mod?'Модерация / '+subject:'Кабинет / '+subject,subject, st==='loading'?'Подготавливаем данные…':st==='empty'?'Здесь пока ничего нет.':'Возникла проблема при получении данных.');if(st==='loading'){return headingTitle+`<div class="s1-card s1-entries">${[90,72,85,62].map(w=>`<div class="s1-skeleton" style="width:${w}%"></div>`).join('')}</div>`;}const texts={apply:['Форма ещё не заполнена','Введите название, дату, место и описание события, затем отправьте заявку.','Заполнить'],myapps:['Вы ещё не подавали заявки','Создайте мероприятие и отправьте его на проверку.','Создать заявку'],profile:['Нет дополнительных сведений','Добавьте данные профиля — их можно будет изменить позже.','Заполнить профиль'],registrations:['Записей пока нет','Найдите событие или секцию, которые вам интересны.','Перейти к мероприятиям'],queue:['Очередь пуста','Все заявки обработаны. Новые появятся здесь.','Обновить'],review:['Заявка не найдена','Возможно, она удалена или уже недоступна.','К очереди']};const o=texts[key];if(st==='empty')return headingTitle+`<div class="s1-card s1-blank"><span class="emoji">⌕</span><h3>${o[0]}</h3><p>${o[1]}</p>${btn(o[2],key==='myapps'?'goto-apply':key==='queue'?'refresh':key==='review'?'goto-queue':key==='registrations'?'goto-events':'normal','secondary')}</div>`;return headingTitle+`<div class="s1-card s1-blank"><span class="emoji">!</span><h3>Не удалось загрузить</h3><p>Проверьте соединение и повторите запрос. Данные не изменены.</p>${btn('Повторить','normal')}</div>`}
+ function render(){const key=view.value,st=state.value;const mod=['queue','review'].includes(key);const body=st==='normal'?({apply,myapps,profile,registrations,queue,review}[key]()) : special();root.innerHTML=header(mod)+`<div class="s1-page">${body}</div>`+(dialog?`<div class="s1-modal-back"><div class="s1-modal" role="dialog" aria-modal="true" aria-label="${dialog==='reject'?'Отклонить заявку':'Одобрить заявку'}"><h3>${dialog==='reject'?'Отклонить заявку?':'Одобрить заявку?'}</h3><p class="s1-muted">${dialog==='reject'?'Укажите понятную причину отказа. Она будет показана организатору.':'После подтверждения заявка будет отмечена одобренной.'}</p>${dialog==='reject'?'<textarea id="s1-reason" placeholder="Причина отказа (обязательно)"></textarea>':''}<div class="s1-footer-actions">${btn('Отмена','dismiss','outline')}${btn('Подтвердить','confirm',dialog==='reject'?'danger':'')}</div></div></div>`:'')+(toast?`<div class="s1-toast" role="status">${esc(toast)}</div>`:'');root.classList.toggle('mobile',device==='mobile');document.querySelectorAll('[data-s1-device]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.s1Device===device)));}
+ function switchView(v){if(!v||v==='events'){toast='Переход к афише — внешний экран из #18899';return render()}view.value=v;state.value='normal';toast='';dialog='';render()}
+ view.addEventListener('change',()=>{toast='';dialog='';entryQuery='';render()});state.addEventListener('change',()=>{toast='';dialog='';render()});
+ document.addEventListener('click',e=>{const b=e.target.closest('[data-s1-device]');if(b){device=b.dataset.s1Device;render();return};const filterEl=e.target.closest('[data-s1-filter]');if(filterEl){filter=filterEl.dataset.s1Filter;render();return};const a=e.target.closest('[data-s1-action]');if(!a||!root.contains(a))return;const op=a.dataset.s1Action;if(op.startsWith('goto-'))return switchView(op.slice(5));if(op==='normal'){state.value='normal';render();return;}if(op==='refresh'){toast='Данные обновлены (демо)';render();return;}if(op==='edit-profile'){editing=!editing;render();return;}if(op==='draft'){toast='Черновик сохранён локально (демо)';render();return;}if(op==='approve'||op==='reject'){dialog=op;render();return;}if(op==='dismiss'){dialog='';render();return;}if(op==='confirm'){if(dialog==='reject'&&(!root.querySelector('#s1-reason')?.value.trim()||root.querySelector('#s1-reason').value.trim().length<8)){root.querySelector('#s1-reason').focus();root.querySelector('#s1-reason').style.borderColor='var(--tusumba-error)';return;}toast=dialog==='approve'?'Заявка одобрена (демо)':'Заявка отклонена (демо)';dialog='';render();return;}if(op==='cancel-registration'){dialog='';toast='Отмена записи требует подтверждения и API. Это макет.';render();return;}if(op==='detail-user'){toast='Карточка заявки организатора — проектный сценарий';render();return;}toast='Это демонстрационная кнопка без перехода на сервер';render();});
+ root.addEventListener('input',e=>{if(e.target.id==='s1-search'){entryQuery=e.target.value;const pos=e.target.selectionStart;render();const f=root.querySelector('#s1-search');if(f){f.focus();f.setSelectionRange(pos,pos);}}});
+ root.addEventListener('submit',e=>{if(e.target.id!=='s1-application-form')return;e.preventDefault();const f=e.target,dt=new FormData(f),title=(dt.get('title')||'').trim(),desc=(dt.get('description')||'').trim(),email=(dt.get('email')||'').trim();const msg=(!title||!dt.get('category')||!dt.get('date')||!dt.get('time')||!dt.get('address')||!dt.get('contact')||desc.length<20||!/^\S+@\S+\.\S+$/.test(email))?'Заполните обязательные поля: название, категорию, дату, время, место, описание (от 20 символов), контакт и email.':'';if(msg){const e=root.querySelector('#s1-validation');e.style.display='block';e.textContent=msg;return;}applicationCounter++;view.value='myapps';state.value='normal';toast='Заявка отправлена на модерацию (демо, без API)';render();});
+ render();
+})();
+</script></body></html>
